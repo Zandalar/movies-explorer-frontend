@@ -1,6 +1,7 @@
 import React from 'react';
 import { Route, Link } from 'react-router-dom';
 import logo from '../images/logo.svg';
+import Navigation from './Navigation';
 
 function Header({}) {
   return (
@@ -8,8 +9,7 @@ function Header({}) {
       <img className='header__logo' src={logo} alt='Логотип сайта' />
       <div className='header__container'>
         <Route exact='/landing'>
-          <Link to='/signup' />
-          <Link to='/signin' />
+          <Navigation />
         </Route>
       </div>
     </header>

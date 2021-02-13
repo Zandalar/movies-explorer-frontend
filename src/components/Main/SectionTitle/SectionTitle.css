@@ -1,0 +1,14 @@
+.section {
+  display: flex;
+  height: 50px;
+  border-bottom: 1px solid #dadada;
+  box-sizing: border-box;
+}
+
+.section__title {
+  font-weight: normal;
+  font-size: 22px;
+  line-height: 27px;
+  margin: 0;
+  padding: 0;
+}

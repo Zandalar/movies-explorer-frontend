@@ -8,13 +8,13 @@ import Techs from './Techs/Techs'
 
 function Main({}) {
   return (
-    <div className='main'>
+    <body className='main'>
       <Promo />
       <AboutProject />
       <Techs />
       <AboutMe />
       <Portfolio />
-    </div>
+    </body>
   )
 }
 

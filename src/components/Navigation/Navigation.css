@@ -1,0 +1,12 @@
+@import url(./FilmsMenu/FilmsMenu.css);
+@import url(./UserMenu/UserMenu.css);
+
+.navigation {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.navigation_logout {
+  justify-content: flex-end;
+}

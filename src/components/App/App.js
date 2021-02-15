@@ -5,11 +5,15 @@ import Main from '../Main/Main';
 import Footer from '../Footer/Footer';
 
 function App() {
+  const [loggedIn, setLoggedIn] = React.useState(true);
+
   return (
     <div className="app">
       <Switch>
         <Route exact path='/'>
-          <Header />
+          <Header
+            loggedIn={loggedIn}
+          />
           <Main />
           <Footer />
         </Route>

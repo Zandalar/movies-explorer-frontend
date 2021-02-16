@@ -69,6 +69,7 @@
   cursor: pointer;
   box-sizing: border-box;
   margin: 0 14px 0 29px;
+  border-radius: 16px;
 }
 
 .search__switcher_on {

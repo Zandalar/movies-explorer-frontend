@@ -1,8 +1,67 @@
 .card {
-
+  display: flex;
+  flex-direction: column;
+  position: relative;
 }
 
 .card__image {
   width: 360px;
+  height: 201px;
   object-fit: contain;
+  border-radius: 6px;
+}
+
+.card__container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 14px 0;
+}
+
+.card__name {
+  font-weight: normal;
+  font-size: 11px;
+  line-height: 10px;
+  margin: 0;
+}
+
+.card__duration {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 52px;
+  height: 18px;
+  background-color: #2f2f2f;
+  margin: 0;
+  border-radius: 3px;
+}
+
+.card__duration-text {
+  color: #8b8b8b;
+  font-weight: normal;
+  font-size: 11px;
+  line-height: 10px;
+}
+
+.card__save {
+  width: 72px;
+  height: 21px;
+  position: absolute;
+  border: none;
+  border-radius: 30px;
+  outline: none;
+  box-sizing: border-box;
+  background-color: #313131;
+  color: #fff;
+  font-weight: normal;
+  font-size: 10px;
+  line-height: 9px;
+  top: 14px;
+  right: 14px;
+  cursor: pointer;
+  visibility: hidden;
+}
+
+.card__save_active {
+  visibility: visible;
 }

@@ -1,0 +1,8 @@
+.card {
+
+}
+
+.card__image {
+  width: 360px;
+  object-fit: contain;
+}

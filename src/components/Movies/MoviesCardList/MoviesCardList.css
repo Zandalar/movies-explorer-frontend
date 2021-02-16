@@ -1,0 +1,12 @@
+.elements {
+  width: 100%;
+  background-color: #202020;
+}
+
+.elements__list {
+  width: 89.0625%;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 360px);
+  grid-column-gap: 30px;
+  list-style: none;
+}

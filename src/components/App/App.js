@@ -40,7 +40,9 @@ function App() {
           />
           <Profile
             idName='profile'
-            name='Виталий' />
+            name='Виталий'
+            email='test@test.com'
+          />
         </Route>
       </Switch>
     </div>

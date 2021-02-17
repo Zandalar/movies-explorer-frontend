@@ -1,7 +1,9 @@
 .app {
+  height: 100vh;
   color: #fff;
   font-family: Inter, Arial, Helvetica, sans-serif;
   font-style: normal;
   font-weight: normal;
   text-rendering: optimizeLegibility;
+  background-color: #202020;
 }

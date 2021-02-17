@@ -1,0 +1,9 @@
+.form {
+  width: 32.03125%;
+  display: flex;
+  flex-direction: column;
+}
+
+.form__input {
+
+}

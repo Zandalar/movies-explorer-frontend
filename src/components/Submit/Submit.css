@@ -1,0 +1,34 @@
+.submit {
+  width: 30.9375%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.submit__button {
+  width: 100%;
+  height: 45px;
+  background: #4285f4;
+  border: none;
+  outline: none;
+  color: #fff;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
+  cursor: pointer;
+}
+
+.submit__message {
+  color: #8b8b8b;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 17px;
+}
+
+.submit__link {
+  color: #4285f4;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 17px;
+  text-decoration: none;
+}

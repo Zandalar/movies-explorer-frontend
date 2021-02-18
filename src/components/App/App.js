@@ -6,9 +6,10 @@ import Footer from '../Footer/Footer';
 import Movies from '../Movies/Movies';
 import SavedMovies from '../SavedMovies/SavedMovies';
 import Profile from '../Profile/Profile';
+import Register from '../Register/Register';
 
 function App() {
-  const [loggedIn, setLoggedIn] = React.useState(true);
+  const [loggedIn, setLoggedIn] = React.useState(false);
 
   return (
     <div className="app">
@@ -35,14 +36,15 @@ function App() {
           <Footer />
         </Route>
         <Route exact path='/profile'>
-          <Header
-            loggedIn={loggedIn}
-          />
           <Profile
             idName='profile'
             name='Виталий'
             email='test@test.com'
+            loggedIn={loggedIn}
           />
+        </Route>
+        <Route exact path='/signup'>
+          <Register />
         </Route>
       </Switch>
     </div>

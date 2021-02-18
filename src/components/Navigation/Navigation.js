@@ -1,5 +1,4 @@
 import React from 'react';
-import { Route, Link } from 'react-router-dom';
 import UserMenu from './UserMenu/UserMenu';
 import FilmsMenu from './FilmsMenu/FilmsMenu';
 

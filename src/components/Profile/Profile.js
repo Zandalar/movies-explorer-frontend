@@ -1,8 +1,11 @@
 import React from 'react';
+import Header from '../Header/Header';
 
-function Profile({name, email}) {
+function Profile({name, email, loggedIn}) {
   return (
-    <section className='profile'>
+    <>
+      <Header loggedIn={loggedIn}/>
+      <body className='profile'>
       <h1 className='profile__title'>Привет, {name}!</h1>
       <div className='profile__container'>
         <div className='profile__info'>
@@ -16,13 +19,15 @@ function Profile({name, email}) {
       </div>
       <ul className='profile__menu'>
         <li className='profile__menu-item'>
-          <button className='profile__edit' type='button'>Редактировать</button>
+          <button className='profile__button' type='button'>Редактировать</button>
         </li>
         <li className='profile__menu-item'>
-          <button className='profile__logout' type='button'>Выйти из аккаунта</button>
+          <button className='profile__button profile__button_logout' type='button'>Выйти из аккаунта</button>
         </li>
       </ul>
-    </section>
+      </body>
+    </>
+
   )
 }
 

@@ -1,0 +1,18 @@
+.welcome-screen {
+  width: 30.9375%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 70px 0 40px;
+}
+
+.welcome-screen__logo {
+ margin-bottom: 40px;
+}
+
+.welcome-screen__title {
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 29px;
+  margin: 0;
+}

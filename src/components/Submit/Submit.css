@@ -1,8 +1,12 @@
 .submit {
-  width: 30.9375%;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.submit:last-child {
+  justify-content: flex-end;
 }
 
 .submit__button {
@@ -16,6 +20,8 @@
   font-size: 14px;
   line-height: 17px;
   cursor: pointer;
+  margin: 69px 0 16px;
+  border-radius: 3px;
 }
 
 .submit__message {
@@ -23,6 +29,7 @@
   font-weight: normal;
   font-size: 14px;
   line-height: 17px;
+  margin: 0;
 }
 
 .submit__link {

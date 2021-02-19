@@ -2,3 +2,7 @@
 @import url(./MoviesCardList/MoviesCardList.css);
 @import url(./MoviesCard/MoviesCard.css);
 @import url(./MoreButton/MoreButton.css);
+
+.movies {
+  width: 100%;
+}

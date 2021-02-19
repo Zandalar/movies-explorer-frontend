@@ -7,9 +7,11 @@ import Movies from '../Movies/Movies';
 import SavedMovies from '../SavedMovies/SavedMovies';
 import Profile from '../Profile/Profile';
 import Register from '../Register/Register';
+import Login from '../Login/Login';
+import NotFound from '../NotFound/NotFound';
 
 function App() {
-  const [loggedIn, setLoggedIn] = React.useState(false);
+  const [loggedIn, setLoggedIn] = React.useState(true);
 
   return (
     <div className="app">
@@ -45,6 +47,12 @@ function App() {
         </Route>
         <Route exact path='/signup'>
           <Register />
+        </Route>
+        <Route exact path='/signin'>
+          <Login />
+        </Route>
+        <Route path='/*'>
+          <NotFound />
         </Route>
       </Switch>
     </div>

@@ -6,6 +6,11 @@ function MoviesCardList({}) {
     <section className='cards'>
       <ul className='cards__list'>
         <MoviesCard />
+        <MoviesCard />
+        <MoviesCard />
+        <MoviesCard />
+        <MoviesCard />
+        <MoviesCard />
       </ul>
     </section>
   )

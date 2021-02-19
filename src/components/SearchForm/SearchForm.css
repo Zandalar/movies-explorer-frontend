@@ -48,7 +48,7 @@
 .search__button {
   min-width: 34px;
   height: 34px;
-  background-image: url(../../../images/search-arrow__icon.svg);
+  background-image: url(../../images/search-arrow__icon.svg);
   background-repeat: no-repeat;
   background-position: center;
   background-color: #4285F4;

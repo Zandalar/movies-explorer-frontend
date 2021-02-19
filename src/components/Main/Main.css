@@ -1,10 +1,10 @@
-@import url(./AboutMe/AboutMe.css);
-@import url(./AboutProject/AboutProject.css);
-@import url(./NavTab/NavTab.css);
-@import url(./Portfolio/Portfolio.css);
-@import url(./Promo/Promo.css);
-@import url(./Techs/Techs.css);
-@import url(./SectionTitle/SectionTitle.css);
+@import url(../AboutMe/AboutMe.css);
+@import url(../AboutProject/AboutProject.css);
+@import url(../NavTab/NavTab.css);
+@import url(../Portfolio/Portfolio.css);
+@import url(../Promo/Promo.css);
+@import url(../Techs/Techs.css);
+@import url(../SectionTitle/SectionTitle.css);
 
 .main {
   width: 100%;

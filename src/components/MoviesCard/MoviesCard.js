@@ -1,6 +1,6 @@
 import React from 'react';
 import { useLocation } from 'react-router-dom';
-import photo from '../../../images/author.png';
+import photo from '../../images/author.png';
 
 function MoviesCard({}) {
   const [isShown, setIsShown] = React.useState(false);

@@ -23,7 +23,7 @@
   font-weight: normal;
   font-size: 13px;
   line-height: 16px;
-  color: #8B8B8B;
+  color: #8b8b8b;
   text-align: center;
   margin: 79px 0 20px;
 }
@@ -33,10 +33,8 @@
   grid-template-columns: repeat(3, min-content);
   grid-column-gap: 20px;
   list-style: none;
-}
-
-.footer__list-item {
-
+  padding: 0;
+  margin: 0;
 }
 
 .footer__link {
@@ -49,5 +47,13 @@
   font-size: 13px;
   line-height: 16px;
   color: #fff;
+}
+
+@media all and (max-width: 800px) {
+  .footer__container {
+    width: calc(100% - 60px);
+  }
+
+
 }
 

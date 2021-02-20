@@ -5,7 +5,6 @@
 }
 
 .card__image {
-  width: 360px;
   height: 201px;
   object-fit: contain;
   border-radius: 6px;
@@ -19,9 +18,9 @@
 }
 
 .card__name {
-  font-weight: normal;
-  font-size: 11px;
-  line-height: 10px;
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 16px;
   margin: 0;
 }
 
@@ -95,4 +94,14 @@
   background-repeat: no-repeat;
   background-position: center;
   border-radius: 30px;
+}
+
+@media all and (max-width: 800px) {
+  .card__image {
+    height: 190px;
+  }
+
+  .card__container {
+    padding: 25px 0 0;
+  }
 }

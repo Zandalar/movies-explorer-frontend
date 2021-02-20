@@ -1,6 +1,3 @@
-@import url(./FilmsMenu/FilmsMenu.css);
-@import url(./UserMenu/UserMenu.css);
-
 .navigation {
   width: 100%;
   display: flex;

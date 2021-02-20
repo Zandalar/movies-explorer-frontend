@@ -1,6 +1,6 @@
 import React from 'react';
-import UserMenu from './UserMenu/UserMenu';
-import FilmsMenu from './FilmsMenu/FilmsMenu';
+import UserMenu from '../UserMenu/UserMenu';
+import FilmsMenu from '../FilmsMenu/FilmsMenu';
 
 function Navigation({loggedIn}) {
   return (

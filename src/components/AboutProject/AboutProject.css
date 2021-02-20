@@ -18,10 +18,19 @@
   margin: 0 0 24px;
 }
 
+.project__card {
+  margin-right: 30px;
+}
+
+.project__card:last-child {
+  margin-right: 0;
+}
+
 .project__text {
   font-weight: normal;
   font-size: 14px;
   line-height: 20px;
+  margin: 0;
 }
 
 .project__list {
@@ -61,4 +70,24 @@
 
 .project__list-text_grey {
   color: #8b8b8b;
+}
+
+@media all and (max-width: 800px) {
+  .project {
+    width: calc(100% - 100px);
+    padding: 90px 0;
+  }
+
+  .project__container {
+    padding: 70px 0 90px;
+  }
+
+  .project__title {
+    margin: 0 0 22px;
+  }
+
+  .project__text {
+    font-size: 12px;
+    line-height: 18px;
+  }
 }

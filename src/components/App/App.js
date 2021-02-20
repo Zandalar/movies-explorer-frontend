@@ -11,7 +11,7 @@ import Login from '../Login/Login';
 import NotFound from '../NotFound/NotFound';
 
 function App() {
-  const [loggedIn, setLoggedIn] = React.useState(false);
+  const [loggedIn, setLoggedIn] = React.useState(true);
 
   return (
     <div className="app">

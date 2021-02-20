@@ -16,6 +16,19 @@
 @import url(./components/Login/Login.css);
 @import url(./components/Submit/Submit.css);
 @import url(./components/NotFound/NotFound.css);
+@import url(./components/SearchForm/SearchForm.css);
+@import url(./components/MoviesCardList/MoviesCardList.css);
+@import url(./components/MoviesCard/MoviesCard.css);
+@import url(./components/MoreButton/MoreButton.css);
+@import url(./components/AboutMe/AboutMe.css);
+@import url(./components/AboutProject/AboutProject.css);
+@import url(./components/NavTab/NavTab.css);
+@import url(./components/Portfolio/Portfolio.css);
+@import url(./components/Promo/Promo.css);
+@import url(./components/Techs/Techs.css);
+@import url(./components/SectionTitle/SectionTitle.css);
+@import url(./components/FilmsMenu/FilmsMenu.css);
+@import url(./components/UserMenu/UserMenu.css);
 
 
 

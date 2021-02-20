@@ -28,11 +28,13 @@
 }
 
 .techs__text {
+  max-width: 460px;
   font-weight: normal;
   font-size: 14px;
   line-height: 20px;
   letter-spacing: -0.04em;
   margin: 0 0 100px;
+  text-align: center;
 }
 
 .techs__list {
@@ -61,4 +63,40 @@
   letter-spacing: -0.04em;
   margin: 0;
   padding: 0;
+}
+
+@media all and (max-width: 800px) {
+  .techs {
+    padding: 90px 0;
+  }
+
+  .techs__container {
+    width: calc(100% - 100px);
+  }
+
+  .techs__content {
+    padding-top: 80px;
+  }
+
+  .techs__title {
+    margin: 0 0 22px;
+  }
+
+  .techs__text {
+    font-size: 12px;
+    line-height: 18px;
+  }
+
+  .techs__list {
+    grid-template-columns: repeat(auto-fit, 84px);
+  }
+
+  .techs__list-item {
+    height: 57px;
+  }
+
+  .techs__list-text {
+    font-size: 12px;
+    line-height: 15px;
+  }
 }

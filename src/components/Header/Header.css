@@ -1,18 +1,24 @@
 .header {
   width: 100%;
   display: flex;
+  justify-content: center;
   background-color: #202020;
-  padding: 21px 0;
+  padding: 18px 0;
 }
 
 .header__container {
   width: 89.0625%;
   display: flex;
-  margin: 0 auto;
   align-items: center;
 }
 
 .header__logo {
   margin-right: 44px;
   cursor: pointer;
+}
+
+@media all and (max-width: 800px) {
+  .header__container {
+    width: 92.1875%;
+  }
 }

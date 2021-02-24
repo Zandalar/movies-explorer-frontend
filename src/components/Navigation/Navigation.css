@@ -7,3 +7,22 @@
 .navigation_logout {
   justify-content: flex-end;
 }
+
+.navigation__menu {
+  width: 44px;
+  height: 44px;
+  background-image: url(../../images/menu__icon.svg);
+  background-size: contain;
+  background-position: center;
+  background-color: #202020;
+  border: none;
+  outline: none;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+
+@media all and (max-width: 768px) {
+  .navigation {
+    justify-content: flex-end;
+  }
+}

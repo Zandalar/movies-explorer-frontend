@@ -20,8 +20,9 @@
   font-size: 14px;
   line-height: 17px;
   cursor: pointer;
-  margin: 69px 0 16px;
+  margin: 0 0 16px;
   border-radius: 3px;
+  padding: 0;
 }
 
 .submit__message {

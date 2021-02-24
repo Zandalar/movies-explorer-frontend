@@ -4,7 +4,7 @@ import Form from '../Form/Form';
 
 function Login({}) {
   return (
-    <body className='login'>
+    <section className='login'>
       <WelcomeScreen title='Рады видеть!' />
       <Form
         buttonText='Войти'
@@ -12,7 +12,7 @@ function Login({}) {
         formId='login'
         linkMessage='Регистрация'
       />
-    </body>
+    </section>
   )
 }
 

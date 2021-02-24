@@ -57,3 +57,20 @@
   border-radius: 6px;
   cursor: pointer;
 }
+
+@media all and (max-width: 600px) {
+  .user__button-signin {
+    width: 54px;
+    height: 26px;
+  }
+
+  .user__link_login {
+    width: 54px;
+    height: 26px;
+  }
+
+  .user__menu-item {
+    font-size: 10px;
+    margin-left: 14px;
+  }
+}

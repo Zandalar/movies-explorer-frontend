@@ -26,10 +26,9 @@ function Navigation({loggedIn}) {
   return (
     <nav className={loggedIn ? 'navigation' : 'navigation navigation_logout'}>
       {(loggedIn && width > 768) && <FilmsMenu />}
-      {width > 768
-      ? <UserMenu loggedIn={loggedIn} />
-      : <button className='navigation__menu' onClick={handleMenuClick}/>
-      }
+      {(loggedIn && width > 768) && <UserMenu loggedIn={loggedIn} />}
+      {(loggedIn && width < 768) && <button className='navigation__menu' onClick={handleMenuClick}/>}
+      {!loggedIn && <UserMenu loggedIn={loggedIn} />}
       <MobileMenu loggedIn={loggedIn} handleMenuClick={handleMenuClick} isMobileMenuOpened={isMobileMenuOpened} />
     </nav>
   )

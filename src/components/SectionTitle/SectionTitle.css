@@ -13,3 +13,10 @@
   margin: 0;
   padding: 0;
 }
+
+@media all and (max-width: 600px) {
+  .section__title {
+    font-size: 18px;
+    line-height: 22px;
+  }
+}

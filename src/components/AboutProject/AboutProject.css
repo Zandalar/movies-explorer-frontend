@@ -91,3 +91,50 @@
     line-height: 18px;
   }
 }
+
+@media all and (max-width: 600px) {
+  .project {
+    width: 88.75%;
+    padding: 70px 0;
+  }
+
+  .project__container {
+    padding: 60px 0 60px;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .project__card {
+    display: flex;
+    flex-direction: column;
+    margin: 0 0 56px;
+  }
+
+  .project__card:last-child {
+    margin: 0;
+  }
+
+  .project__title {
+    margin: 0 0 16px;
+    font-size: 18px;
+    line-height: 22px;
+  }
+
+  .project__text {
+    font-size: 11px;
+    line-height: 16px;
+  }
+
+  .project__list-text {
+    font-size: 11px;
+    line-height: 13px;
+  }
+
+  .project__list {
+    grid-template-columns: 100px auto;
+    grid-template-rows: repeat(2, 36px);
+    padding: 0;
+    margin: 0;
+    list-style: none;
+  }
+}

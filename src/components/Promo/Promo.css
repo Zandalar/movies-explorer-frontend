@@ -40,3 +40,21 @@
     line-height: 52px;
   }
 }
+
+@media all and (max-width: 600px) {
+  .promo {
+    padding-top: 14px;
+  }
+
+  .promo__container {
+    width: 91.25%;
+    padding-bottom: 22px;
+  }
+
+  .promo__title {
+    width: 100%;
+    margin: 220px 0 212px;
+    font-size: 29px;
+    line-height: 37px;
+  }
+}

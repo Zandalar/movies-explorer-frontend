@@ -19,6 +19,7 @@
   outline: none;
   box-sizing: border-box;
   cursor: pointer;
+  padding: 0;
 }
 
 @media all and (max-width: 768px) {

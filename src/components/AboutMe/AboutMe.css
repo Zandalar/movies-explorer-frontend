@@ -65,7 +65,7 @@
   text-decoration: none;
 }
 
-@media all and (max-width: 800px){
+@media all and (max-width: 800px) {
   .student {
     width: calc(100% - 100px);
     padding: 90px 0;
@@ -96,5 +96,20 @@
 
   .student__content {
     max-width: 364px;
+  }
+}
+
+@media all and (max-width: 600px) {
+  .student__container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .student__content {
+    order: 1;
+  }
+
+  .student__photo {
+    order: 0;
   }
 }

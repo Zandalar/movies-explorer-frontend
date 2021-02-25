@@ -24,7 +24,7 @@ function MoviesCard({}) {
       {location === '/saved-movies' && <button className={`card__delete ${isShown && 'card__save_active'}`} type='button' onClick={handleSaveMovie} />}
       <img className='card__image' src={photo} alt='#' />
       <div className='card__container'>
-        <p className='card__name'>SuperTest</p>
+        <p className='card__name'>SuperTestasddddddddddddddddddddddwwwwwwwww</p>
         <div className='card__duration'>
           <p className='card__duration-text'>1ч 17м</p>
         </div>

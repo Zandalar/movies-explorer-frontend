@@ -100,9 +100,14 @@
 }
 
 @media all and (max-width: 600px) {
+  .student {
+    width: 92.5%;
+  }
+
   .student__container {
     flex-direction: column;
     align-items: center;
+    margin-top: 60px;
   }
 
   .student__content {
@@ -111,5 +116,30 @@
 
   .student__photo {
     order: 0;
+    width: 292px;
+    height: 352px;
+    margin-bottom: 40px;
+  }
+
+  .student__title {
+    font-size: 30px;
+    line-height: 36px;
+    margin: 0 0 20px;
+  }
+
+  .student__subtitle {
+    font-size: 11px;
+    line-height: 16px;
+    margin: 0 0 20px;
+  }
+
+  .student__text {
+    font-size: 11px;
+    line-height: 16px;
+    margin: 0 0 40px;
+  }
+
+  .student__list-item {
+    margin-right: 26px;
   }
 }

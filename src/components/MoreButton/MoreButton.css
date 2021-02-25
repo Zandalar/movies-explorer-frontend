@@ -26,3 +26,9 @@
     width: calc(100% - 60px);
   }
 }
+
+@media all and (max-width: 600px) {
+  .more__button {
+    width: 93.75%;
+  }
+}

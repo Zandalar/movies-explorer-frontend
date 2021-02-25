@@ -27,3 +27,14 @@
     grid-row-gap: 47px;
   }
 }
+
+@media all and (max-width: 600px) {
+  .cards {
+    padding: 40px 0 13px;
+  }
+
+  .cards__list {
+    grid-template-columns: repeat(auto-fill, 300px);
+    grid-row-gap: 39px;
+  }
+}

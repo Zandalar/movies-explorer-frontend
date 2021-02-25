@@ -11,17 +11,23 @@
 }
 
 .card__container {
+  width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 14px 14px 0;
+  box-sizing: border-box;
 }
 
 .card__name {
+  width: 100%;
   font-weight: 500;
   font-size: 13px;
   line-height: 16px;
   margin: 0;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 .card__duration {
@@ -31,7 +37,7 @@
   width: 52px;
   height: 18px;
   background-color: #2f2f2f;
-  margin: 0;
+  margin-left: 30px;
   border-radius: 3px;
 }
 
@@ -103,5 +109,28 @@
 
   .card__container {
     padding: 25px 0 0;
+  }
+
+  .card__duration {
+    margin-left: 37px;
+  }
+}
+
+@media all and (max-width: 600px) {
+  .card__image {
+    height: 168px;
+  }
+
+  .card__container {
+    padding: 16px 0 0;
+  }
+
+  .card__name {
+    font-size: 12px;
+    line-height: 15px;
+  }
+
+  .card__duration {
+    margin-left: 8px;
   }
 }

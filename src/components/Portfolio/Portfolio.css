@@ -62,3 +62,27 @@
     margin: 0 0 90px;
   }
 }
+
+@media all and (max-width: 860px) {
+  .portfolio {
+    width: 92.5%;
+  }
+
+  .portfolio__title {
+    margin: 0 0 20px;
+    font-size: 14px;
+  }
+
+  .portfolio__link {
+    font-size: 18px;
+    line-height: 28px;
+  }
+
+  .portfolio__list-item {
+    border-bottom: 1px solid #e5e5e5;
+  }
+
+  .portfolio__list {
+    margin: 0 0 70px;
+  }
+}

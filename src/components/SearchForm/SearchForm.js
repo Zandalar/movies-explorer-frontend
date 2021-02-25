@@ -3,6 +3,16 @@ import searchIcon from '../../images/search__icon.svg';
 
 function SearchForm({}) {
   const [switcherClicked, setSwitcherClicked] = React.useState(true);
+  const [width, setWidth] = React.useState(window.innerWidth);
+
+  function updateWidth() {
+    setWidth(window.innerWidth);
+  }
+
+  React.useEffect(() => {
+    window.addEventListener('resize', updateWidth);
+    return () => window.removeEventListener('resize', updateWidth);
+  });
 
   function handleSwitch() {
     switcherClicked
@@ -14,7 +24,7 @@ function SearchForm({}) {
     <section className='search'>
       <div className='search__container'>
         <form className='search__form' name='search' noValidate>
-          <img className='search__icon' src={searchIcon} alt='иконка поиска' />
+          {width > 600 && <img className='search__icon' src={searchIcon} alt='иконка поиска' />}
           <input
             className='search__input'
             id='search'
@@ -27,11 +37,23 @@ function SearchForm({}) {
           />
           <button className='search__button' type='submit' />
         </form>
+        {width > 600 &&
+        <div className='search__switcher-container'>
+          <div className={`search__switcher ${switcherClicked ? 'search__switcher_off' : 'search__switcher_on'}`} onClick={handleSwitch}>
+            <div className='search__switcher-button' />
+          </div>
+          <p className='search__switcher-text' onClick={handleSwitch}>Короткометражки</p>
+        </div>
+        }
+      </div>
+      {width < 600 &&
+      <div className='search__switcher-container'>
         <div className={`search__switcher ${switcherClicked ? 'search__switcher_off' : 'search__switcher_on'}`} onClick={handleSwitch}>
           <div className='search__switcher-button' />
         </div>
         <p className='search__switcher-text' onClick={handleSwitch}>Короткометражки</p>
       </div>
+      }
     </section>
   )
 }

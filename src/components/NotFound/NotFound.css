@@ -91,3 +91,21 @@
     text-shadow: none;
   }
 }
+
+@media all and (max-width: 600px) {
+  .error {
+    font-size: 50px;
+  }
+
+  .error__text {
+    font-size: 50px;
+  }
+
+  .error__message {
+    font-size: 16px;
+  }
+
+  .error__link {
+    font-size: 16px;
+  }
+}

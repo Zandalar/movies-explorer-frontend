@@ -50,3 +50,13 @@
     width: 51.5625%;
   }
 }
+
+@media all and (max-width: 600px) {
+  .form__section {
+    width: 81.25%;
+  }
+
+  .form__input {
+    font-weight: 500;
+  }
+}

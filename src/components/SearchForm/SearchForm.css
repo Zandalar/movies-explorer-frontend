@@ -139,6 +139,7 @@
 
   .search__switcher-container {
     margin: 0 0 45px;
+    padding: 0;
   }
 
   .search__input::placeholder {

@@ -40,3 +40,14 @@
   line-height: 17px;
   text-decoration: none;
 }
+
+@media all and (max-width: 600px) {
+  .submit__message {
+    font-size: 12px;
+    line-height: 15px;
+  }
+
+  .submit__button {
+    margin: 0 0 14px;
+  }
+}

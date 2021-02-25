@@ -89,3 +89,23 @@
   }
 }
 
+@media all and (max-width: 600px) {
+  .profile {
+    padding: 70px 0 40px;
+  }
+
+  .profile__container {
+    width: 81.25%;
+  }
+
+  .profile__title {
+    margin-bottom: 80px;
+  }
+
+  .profile__button {
+    font-size: 12px;
+    line-height: 15px;
+  }
+
+}
+

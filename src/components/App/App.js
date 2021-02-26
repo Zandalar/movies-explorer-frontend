@@ -9,9 +9,16 @@ import Profile from '../Profile/Profile';
 import Register from '../Register/Register';
 import Login from '../Login/Login';
 import NotFound from '../NotFound/NotFound';
+import * as api from '../../utils/api';
 
 function App() {
   const [loggedIn, setLoggedIn] = React.useState(true);
+
+  React.useEffect(() => {
+    Promise.all(api.getUserInfo())
+      .then(res => console.log(res))
+      .catch((err) => console.log(`Что-то пошло не так :( ${err}`))
+  })
 
   return (
     <div className="app">

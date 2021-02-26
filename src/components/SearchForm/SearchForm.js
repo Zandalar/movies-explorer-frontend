@@ -37,11 +37,19 @@ function SearchForm({}) {
           />
           <button className='search__button' type='submit' />
         </form>
-        <label className='search__checkbox'>
-          <input className='search__checkbox-input' type='checkbox'/>
-          <div className='search__checkbox-text'>Короткометражки</div>
-        </label>
+        {width > 600 &&
+          <label className='search__checkbox'>
+            <input className='search__checkbox-input' type='checkbox'/>
+            <div className='search__checkbox-text'>Короткометражки</div>
+          </label>
+        }
       </div>
+      {width < 600 &&
+      <label className='search__checkbox'>
+        <input className='search__checkbox-input' type='checkbox'/>
+        <div className='search__checkbox-text'>Короткометражки</div>
+      </label>
+      }
     </section>
   )
 }

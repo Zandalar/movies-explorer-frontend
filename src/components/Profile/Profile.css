@@ -30,7 +30,7 @@
 }
 
 .profile__info_active {
-  border-bottom: 1px solid #3ddc84;
+  border-bottom: 1px solid #4285f4;
 }
 
 .profile__info:last-child {
@@ -57,7 +57,10 @@
 }
 
 .profile__value:focus {
-  outline: 1px solid #3ddc84;
+  outline-style: inset;
+  outline-color: #4285f4;
+  outline-width: 1px;
+  caret-color: #4285f4;
 }
 
 .profile__menu {

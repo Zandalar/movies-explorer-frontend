@@ -25,6 +25,11 @@
   padding: 0;
 }
 
+.submit__button:hover {
+  opacity: .8;
+  transition: opacity .2s ease;
+}
+
 .submit__message {
   color: #8b8b8b;
   font-weight: normal;
@@ -39,6 +44,11 @@
   font-size: 14px;
   line-height: 17px;
   text-decoration: none;
+}
+
+.submit__link:hover {
+  opacity: .7;
+  transition: opacity .2s ease;
 }
 
 @media all and (max-width: 600px) {

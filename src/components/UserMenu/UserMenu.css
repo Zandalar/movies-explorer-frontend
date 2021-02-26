@@ -10,7 +10,7 @@
   display: flex;
   align-items: center;
   margin-left: 30px;
-  font-weight: 500;
+  font-weight: normal;
   font-size: 12px;
   line-height: 16px;
 }
@@ -34,6 +34,10 @@
   text-decoration: none;
 }
 
+.user__button-signup:hover {
+  font-weight: 500;
+}
+
 .user__button-signin {
   width: 76px;
   height: 32px;
@@ -44,6 +48,11 @@
   border: none;
   padding: 0;
   cursor: pointer;
+}
+
+.user__button-signin:hover {
+  opacity: .8;
+  transition: opacity .2s ease;
 }
 
 .user__button-signin_login {

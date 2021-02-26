@@ -5,11 +5,11 @@ import MoreButton from '../MoreButton/MoreButton';
 
 function Movies({}) {
   return (
-    <body className='movies'>
+    <main className='movies'>
       <SearchForm />
       <MoviesCardList />
       <MoreButton />
-    </body>
+    </main>
   )
 }
 

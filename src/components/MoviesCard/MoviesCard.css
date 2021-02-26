@@ -68,6 +68,11 @@
   visibility: hidden;
 }
 
+.card__save:hover {
+  opacity: .8;
+  transition: opacity .2s ease;
+}
+
 .card__delete {
   width: 21px;
   height: 21px;
@@ -83,6 +88,11 @@
   cursor: pointer;
   outline: none;
   visibility: hidden;
+}
+
+.card__delete:hover {
+  opacity: .8;
+  transition: opacity .2s ease;
 }
 
 .card__save_active {

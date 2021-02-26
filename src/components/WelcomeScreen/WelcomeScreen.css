@@ -11,6 +11,11 @@
   cursor: pointer;
 }
 
+.welcome-screen__logo:hover {
+  opacity: .8;
+  transition: opacity .2s ease;
+}
+
 .welcome-screen__title {
   font-weight: 500;
   font-size: 24px;

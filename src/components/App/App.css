@@ -1,5 +1,5 @@
 .app {
-  height: 100vh;
+  min-height: 100vh;
   color: #fff;
   font-family: Inter, Arial, Helvetica, sans-serif;
   font-style: normal;

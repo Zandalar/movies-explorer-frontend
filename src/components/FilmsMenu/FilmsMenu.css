@@ -24,3 +24,7 @@
   line-height: 18px;
   text-decoration: none;
 }
+
+.films__link:hover {
+  font-weight: 500;
+}

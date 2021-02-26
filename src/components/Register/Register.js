@@ -4,7 +4,7 @@ import Form from '../Form/Form';
 
 function Register({}) {
   return (
-      <section className='register'>
+      <main className='register'>
         <WelcomeScreen title='Добро пожаловать!' />
         <Form
           buttonText='Зарегистрироваться'
@@ -12,7 +12,7 @@ function Register({}) {
           formId='register'
           linkMessage='Войти'
         />
-      </section>
+      </main>
   )
 }
 

@@ -41,6 +41,11 @@
   margin: 20px 0 19px;
 }
 
+.portfolio__link:hover {
+  opacity: .7;
+  transition: opacity .2s ease;
+}
+
 @media all and (max-width: 800px) {
   .portfolio {
     width: calc(100% - 100px);

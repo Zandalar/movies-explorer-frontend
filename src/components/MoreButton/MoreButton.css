@@ -21,6 +21,11 @@
   padding: 0;
 }
 
+.more__button:hover {
+  opacity: .8;
+  transition: opacity .2s ease;
+}
+
 @media all and (max-width: 800px) {
   .more__button {
     width: calc(100% - 60px);

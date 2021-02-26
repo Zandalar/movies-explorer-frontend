@@ -18,6 +18,12 @@
   border-radius: 10px;
 }
 
+.navtab__item:hover {
+  opacity: .8;
+  transition: opacity .2s ease;
+  cursor: pointer;
+}
+
 .navtab__link {
   color: #fff;
   text-decoration: none;

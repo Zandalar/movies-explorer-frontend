@@ -9,16 +9,21 @@ import Profile from '../Profile/Profile';
 import Register from '../Register/Register';
 import Login from '../Login/Login';
 import NotFound from '../NotFound/NotFound';
-import * as api from '../../utils/api';
+import * as api from '../../utils/MainApi';
+import * as moviesApi from '../../utils/MoviesApi';
 
 function App() {
-  const [loggedIn, setLoggedIn] = React.useState(true);
+  const [loggedIn, setLoggedIn] = React.useState(false);
+  const [loading, setLoading] = React.useState(false);
 
   React.useEffect(() => {
-    Promise.all(api.getUserInfo())
-      .then(res => console.log(res))
+    setLoading(true);
+    Promise.resolve(moviesApi.getMovies())
+      .then((data) => {
+        console.log(data)
+      })
       .catch((err) => console.log(`Что-то пошло не так :( ${err}`))
-  })
+  }, [])
 
   return (
     <div className="app">

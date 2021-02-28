@@ -112,7 +112,7 @@
   }
 }
 
-@media all and (max-width: 600px) {
+@media all and (max-width: 700px) {
   .profile {
     padding: 70px 0 40px;
   }

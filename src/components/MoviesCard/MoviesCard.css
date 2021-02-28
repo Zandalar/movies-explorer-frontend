@@ -80,7 +80,7 @@
   top: 14px;
   right: 14px;
   background-color: #313131;
-  background-image: url(../../images/cross__icon.svg);
+  background-image: url(../../images/icon__cross.svg);
   background-repeat: no-repeat;
   background-position: center;
   border: none;
@@ -106,7 +106,7 @@
   top: 14px;
   right: 14px;
   background-color: #ee3465;
-  background-image: url(../../images/saved__icon.svg);
+  background-image: url(../../images/icon__saved.svg);
   background-repeat: no-repeat;
   background-position: center;
   border-radius: 30px;

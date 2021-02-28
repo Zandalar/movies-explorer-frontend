@@ -1,5 +1,5 @@
 import React from 'react';
-import searchIcon from '../../images/search__icon.svg';
+import searchIcon from '../../images/icon__search.svg';
 
 function SearchForm({}) {
   const [switcherClicked, setSwitcherClicked] = React.useState(false);

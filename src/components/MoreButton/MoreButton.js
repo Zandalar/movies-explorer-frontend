@@ -1,9 +1,10 @@
 import React from 'react';
 
-function MoreButton({}) {
+function MoreButton({onMoreClick, isButtonActive}) {
   return (
+    isButtonActive &&
     <section className='more'>
-      <button className='more__button'>Ещё</button>
+      <button className='more__button' onClick={onMoreClick}>Ещё</button>
     </section>
   )
 }

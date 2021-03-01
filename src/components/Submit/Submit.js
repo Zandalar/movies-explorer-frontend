@@ -10,6 +10,7 @@ function Submit({buttonText, formId, descriptionMessage, linkMessage, isValid, i
         className={`submit__button ${!isValid && 'submit__button_disabled'}`}
         type='submit'
         form={formId}
+        disabled={!isValid && true}
       >
         {buttonText}
       </button>

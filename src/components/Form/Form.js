@@ -29,7 +29,7 @@ function Form({buttonText, descriptionMessage, formId, linkMessage, onRegister, 
 
   return (
     <section className='form__section'>
-      <form className='form' id={formId} onSubmit={handleSubmit}>
+      <form className='form' id={formId} onSubmit={handleSubmit} noValidate>
         {location === '/signup' &&
         <label className='form__label' htmlFor='profile__name'>Имя</label>
         }

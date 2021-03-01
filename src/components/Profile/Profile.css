@@ -33,7 +33,7 @@
   border-bottom: 1px solid #4285f4;
 }
 
-.profile__info:last-child {
+.profile__info:nth-child(3) {
   border-bottom: none;
 }
 
@@ -100,6 +100,15 @@
 .profile__button_logout {
   color: #ee3465;
   font-weight: 500;
+}
+
+.profile__error {
+  max-width: 100%;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 15px;
+  color: #ff0000;
+  text-align: right;
 }
 
 @media all and (max-width: 800px) {

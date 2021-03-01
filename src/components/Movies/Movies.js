@@ -1,18 +1,16 @@
 import React from 'react';
 import SearchForm from '../SearchForm/SearchForm';
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
-import MoreButton from '../MoreButton/MoreButton';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
 
-function Movies({loggedIn}) {
+function Movies({movies, loggedIn, isLoading}) {
   return (
     <>
       <Header loggedIn={loggedIn}/>
       <main className='movies'>
         <SearchForm />
-        <MoviesCardList />
-        <MoreButton />
+        <MoviesCardList movies={movies} isLoading={isLoading} />
       </main>
       <Footer />
     </>

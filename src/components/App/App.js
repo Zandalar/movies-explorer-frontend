@@ -21,17 +21,16 @@ function App() {
   const [currentUser, setCurrentUser] = React.useState({});
   const [status, setStatus] = React.useState(false);
   const [infoMessage, setInfoMessage] = React.useState('');
-  const [email, setEmail] = React.useState('');
   const [token, setToken] = React.useState('');
+  const [movies, setMovies] = React.useState([]);
 
   const history = useHistory();
 
   function handleRegister(name, email, password) {
     setIsLoading(true);
     api.register(name, email, password)
-      .then((data) => {
+      .then(() => {
         setInfoMessage('Вы успешно зарегистрировались!');
-        setEmail(data.email);
         setStatus(true);
         setIsLoading(false);
         history.push('/signin');
@@ -90,9 +89,8 @@ function App() {
     if (jwt) {
       setToken(jwt);
       api.checkToken(jwt)
-        .then((res) => {
+        .then(() => {
           setLoggedIn(true);
-          setEmail(res.email);
           history.push('/');
         })
         .catch((err) => {
@@ -102,6 +100,21 @@ function App() {
           console.log(new Error(err.status))
         })
     }
+  }
+
+  function handleUpdateUser(user) {
+    setIsLoading(true);
+    api.setUserInfo(user, token)
+      .then((res) => {
+        setCurrentUser(res);
+        setStatus(true);
+        setIsLoading(false);
+        setInfoMessage('Вы успешно изменили данные')
+      })
+      .catch((err) => console.log(`Что-то пошло не так :( ${err}`))
+      .finally(() => {
+        setIsInfoTooltipPopupOpen(true);
+      })
   }
 
   function handleEscClick(evt) {
@@ -119,14 +132,20 @@ function App() {
   }
 
   React.useEffect(() => {
-    moviesApi.getMovies()
-      .then((data) => {
-        setStatus(true)
-        setInfoMessage('TEST test')
-        console.log(data)
-      })
-      .catch((err) => console.log(`Что-то пошло не так :( ${err}`))
-  }, [])
+    setIsLoading(true);
+    if (loggedIn) {
+      const promises = [api.getUserInfo(token), moviesApi.getMovies()];
+      Promise.all(promises)
+        .then((res) => {
+          const [userData, moviesList] = res;
+          setCurrentUser(userData);
+          setMovies(moviesList);
+          console.log(moviesList);
+        })
+        .catch((err) => console.log(`Что-то пошло не так :( ${err}`))
+        .finally(() => setIsLoading(false))
+    }
+  }, [loggedIn])
 
   React.useEffect(() => {
     getToken();
@@ -148,10 +167,18 @@ function App() {
             <Main loggedIn={loggedIn} />
           </Route>
           <Route exact path='/movies'>
-            <Movies loggedIn={loggedIn} />
+            <Movies
+              movies={movies}
+              loggedIn={loggedIn}
+              isLoading={isLoading}
+            />
           </Route>
           <Route exact path='/saved-movies'>
-            <SavedMovies loggedIn={loggedIn} />
+            <SavedMovies
+              movies={movies}
+              loggedIn={loggedIn}
+              isLoading={isLoading}
+            />
           </Route>
           <Route exact path='/profile'>
             <Profile
@@ -160,6 +187,7 @@ function App() {
               email='test@test.com'
               loggedIn={loggedIn}
               onLogout={handleLogout}
+              onUpdateUser={handleUpdateUser}
             />
           </Route>
           <Route exact path='/signup'>

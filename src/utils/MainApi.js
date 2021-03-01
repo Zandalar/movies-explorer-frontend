@@ -1,16 +1,5 @@
 import { MAIN_URL, checkResponse } from './utils';
 
-export function getUserInfo(token) {
-  return fetch(`${MAIN_URL}/users/me`, {
-    headers: {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json',
-      'Authorization': `Bearer ${token}`,
-    },
-  })
-    .then(checkResponse);
-}
-
 export function register(name, email, password) {
   return fetch(`${MAIN_URL}/signup`, {
     method: 'POST',
@@ -46,3 +35,31 @@ export function checkToken(jwt) {
   })
     .then(checkResponse);
 }
+
+export function getUserInfo(token) {
+  return fetch(`${MAIN_URL}/users/me`, {
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`,
+    },
+  })
+    .then(checkResponse);
+}
+
+export function setUserInfo(data, token) {
+  return fetch(`${MAIN_URL}/users/me`, {
+    method: 'PATCH',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`,
+    },
+    body: JSON.stringify({
+      name: data.name,
+      email: data.email,
+    }),
+  })
+    .then(checkResponse);
+}
+

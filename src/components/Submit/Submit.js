@@ -1,12 +1,18 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
-function Submit({buttonText, formId, descriptionMessage, linkMessage}) {
+function Submit({buttonText, formId, descriptionMessage, linkMessage, isValid, isLoading}) {
   const location = useLocation().pathname;
 
   return (
     <section className='submit'>
-      <button className='submit__button' type='submit' form={formId}>{buttonText}</button>
+      <button
+        className={`submit__button ${!isValid && 'submit__button_disabled'}`}
+        type='submit'
+        form={formId}
+      >
+        {buttonText}
+      </button>
       <p className='submit__message'>
         {descriptionMessage}&ensp;
         <Link

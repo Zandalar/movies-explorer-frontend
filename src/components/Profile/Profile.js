@@ -2,7 +2,7 @@ import React from 'react';
 import Header from '../Header/Header';
 import Submit from '../Submit/Submit';
 
-function Profile({name, email, loggedIn}) {
+function Profile({name, email, loggedIn, onLogout}) {
   const [isEditActive, setIsEditActive] = React.useState(false)
 
   function editProfile() {
@@ -34,7 +34,7 @@ function Profile({name, email, loggedIn}) {
             <button className='profile__button' type='button' onClick={editProfile}>Редактировать</button>
           </li>
           <li className='profile__menu-item'>
-            <button className='profile__button profile__button_logout' type='button'>Выйти из аккаунта</button>
+            <button className='profile__button profile__button_logout' type='button' onClick={onLogout}>Выйти из аккаунта</button>
           </li>
         </ul>
       }

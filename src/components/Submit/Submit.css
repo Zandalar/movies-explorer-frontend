@@ -51,6 +51,19 @@
   transition: opacity .2s ease;
 }
 
+.submit__button_disabled {
+  background-color: #fff;
+  color: #000;
+  border: 1px solid #000;
+  box-sizing: border-box;
+  opacity: .2;
+}
+
+.submit__button_disabled:hover {
+  opacity: .2;
+  cursor: not-allowed;
+}
+
 @media all and (max-width: 600px) {
   .submit__message {
     font-size: 12px;

@@ -1,0 +1,85 @@
+.user__menu {
+  display: flex;
+  list-style: none;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+}
+
+.user__menu-item {
+  display: flex;
+  align-items: center;
+  margin-left: 30px;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 16px;
+}
+
+.user__menu-item_login {
+  margin-left: 16px;
+}
+
+.user__link {
+  width: 30px;
+  height: 30px;
+}
+
+.user__link_login {
+  width: 76px;
+  height: 32px;
+}
+
+.user__button-signup {
+  color: #fff;
+  text-decoration: none;
+}
+
+.user__button-signup:hover {
+  font-weight: 500;
+}
+
+.user__button-signin {
+  width: 76px;
+  height: 32px;
+  border-radius: 3px;
+  outline: none;
+  box-sizing: border-box;
+  background-color: #3ddc84;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+.user__button-signin:hover {
+  opacity: .8;
+  transition: opacity .2s ease;
+}
+
+.user__button-signin_login {
+  width: 30px;
+  height: 30px;
+  background-image: url("../../images/icon__account.svg");
+  background-size: auto;
+  background-position: center;
+  background-color: #313131;
+  background-repeat: no-repeat;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+@media all and (max-width: 600px) {
+  .user__button-signin {
+    width: 54px;
+    height: 26px;
+  }
+
+  .user__link_login {
+    width: 54px;
+    height: 26px;
+  }
+
+  .user__menu-item {
+    font-size: 10px;
+    margin-left: 14px;
+  }
+}

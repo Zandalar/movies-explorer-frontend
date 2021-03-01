@@ -1,0 +1,115 @@
+.menu {
+  width: calc(100% - 248px);
+  height: 100%;
+  background-color: #202020;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 1;
+  opacity: 0;
+  transition: all .5s;
+  visibility: hidden;
+}
+
+.menu_opened {
+  opacity: 1;
+  transition: all .5s;
+  visibility: visible;
+}
+
+.menu__container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 112px 0 92px;
+}
+
+.menu__button-close {
+  width: 22px;
+  height: 22px;
+  background-image: url(../../images/icon__cross.svg);
+  background-color: #202020;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  outline: none;
+  border: none;
+  padding: 0;
+  margin: 22px 22px 0 0;
+  align-self: flex-end;
+  cursor: pointer;
+}
+
+.menu__list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.menu__list-item {
+  margin-bottom: 28px;
+}
+
+.menu__link {
+  color: #fff;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 22px;
+  text-decoration: none;
+}
+
+.menu__link:after {
+  display: block;
+  width: 0;
+  height: 2px;
+  background-color: #fff;
+  content: "";
+  transition: width 0.2s ease-out;
+}
+
+.menu__link:hover:after {
+  width: 100%;
+}
+
+.menu__profile {
+  display: flex;
+  align-items: center;
+}
+
+.menu__profile-link {
+  color: #fff;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 16px;
+  margin: 0 13px 0 0;
+  text-decoration: none;
+}
+
+.menu__profile-button {
+  width: 30px;
+  height: 30px;
+  background-image: url("../../images/icon__account.svg");
+  background-size: auto;
+  background-position: center;
+  background-color: #313131;
+  background-repeat: no-repeat;
+  border-radius: 6px;
+  cursor: pointer;
+  outline: none;
+  border: none;
+}
+
+@media all and (max-width: 600px) {
+  .menu {
+    width: 100%;
+    height: 100vh;
+  }
+}

@@ -1,0 +1,43 @@
+.welcome-screen {
+  width: 30.9375%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 70px 0 40px;
+}
+
+.welcome-screen__logo {
+  margin-bottom: 40px;
+  cursor: pointer;
+}
+
+.welcome-screen__logo:hover {
+  opacity: .8;
+  transition: opacity .2s ease;
+}
+
+.welcome-screen__title {
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 29px;
+  margin: 0;
+}
+
+@media all and (max-width: 800px) {
+  .welcome-screen {
+    width: 51.5625%;
+    padding: 0 0 40px;
+  }
+}
+
+@media all and (max-width: 600px) {
+ .welcome-screen {
+   width: 81.25%;
+   align-items: center;
+   padding: 0 0 80px;
+ }
+
+  .welcome-screen__logo {
+    margin-bottom: 50px;
+  }
+}

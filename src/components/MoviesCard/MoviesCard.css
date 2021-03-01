@@ -1,0 +1,146 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.card__image {
+  height: 201px;
+  object-fit: contain;
+  border-radius: 6px;
+}
+
+.card__container {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 14px 0;
+  box-sizing: border-box;
+}
+
+.card__name {
+  width: 100%;
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 16px;
+  margin: 0;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.card__duration {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 52px;
+  height: 18px;
+  background-color: #2f2f2f;
+  margin-left: 30px;
+  border-radius: 3px;
+}
+
+.card__duration-text {
+  color: #8b8b8b;
+  font-weight: normal;
+  font-size: 11px;
+  line-height: 10px;
+  margin: 0;
+}
+
+.card__save {
+  width: 72px;
+  height: 21px;
+  position: absolute;
+  border: none;
+  border-radius: 30px;
+  outline: none;
+  box-sizing: border-box;
+  background-color: #313131;
+  color: #fff;
+  font-weight: normal;
+  font-size: 10px;
+  line-height: 9px;
+  top: 14px;
+  right: 14px;
+  cursor: pointer;
+  visibility: hidden;
+}
+
+.card__save:hover {
+  opacity: .8;
+  transition: opacity .2s ease;
+}
+
+.card__delete {
+  width: 21px;
+  height: 21px;
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  background-color: #313131;
+  background-image: url(../../images/icon__cross.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  outline: none;
+  visibility: hidden;
+}
+
+.card__delete:hover {
+  opacity: .8;
+  transition: opacity .2s ease;
+}
+
+.card__save_active {
+  visibility: visible;
+}
+
+.card__saved {
+  width: 21px;
+  height: 21px;
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  background-color: #ee3465;
+  background-image: url(../../images/icon__saved.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+  border-radius: 30px;
+}
+
+@media all and (max-width: 800px) {
+  .card__image {
+    height: 190px;
+  }
+
+  .card__container {
+    padding: 25px 0 0;
+  }
+
+  .card__duration {
+    margin-left: 37px;
+  }
+}
+
+@media all and (max-width: 600px) {
+  .card__image {
+    height: 168px;
+  }
+
+  .card__container {
+    padding: 16px 0 0;
+  }
+
+  .card__name {
+    font-size: 12px;
+    line-height: 15px;
+  }
+
+  .card__duration {
+    margin-left: 8px;
+  }
+}

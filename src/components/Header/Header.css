@@ -1,0 +1,29 @@
+.header {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  background-color: #202020;
+  padding: 18px 0;
+}
+
+.header__container {
+  width: 89.0625%;
+  display: flex;
+  align-items: center;
+}
+
+.header__logo {
+  margin-right: 44px;
+  cursor: pointer;
+}
+
+.header__logo:hover {
+  opacity: .8;
+  transition: opacity .2s ease;
+}
+
+@media all and (max-width: 800px) {
+  .header__container {
+    width: 92.1875%;
+  }
+}

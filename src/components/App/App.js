@@ -21,6 +21,7 @@ function App() {
   const [infoMessage, setInfoMessage] = React.useState('');
   const [token, setToken] = React.useState('');
   const [movies, setMovies] = React.useState([]);
+  const [isMoviesNotFound, setIsMoviesNotFound] = React.useState(false);
 
   const history = useHistory();
 
@@ -129,27 +130,49 @@ function App() {
     setIsInfoTooltipPopupOpen(false);
   }
 
+  function handleSearch(keyword, checked) {
+    setMovies([]);
+    localStorage.removeItem('movies');
+    localStorage.removeItem('keyword');
+    let moviesList = [];
+    moviesApi.getMovies()
+      .then((data) => {
+        if (checked) {
+          data.filter((movie) => {
+            if (JSON.stringify(movie).toLowerCase().includes(keyword.toLowerCase()) && movie.duration <= 40) {
+              moviesList.push(movie);
+            }
+          })
+        } else {
+          data.filter((movie) => {
+            if (JSON.stringify(movie).toLowerCase().includes(keyword.toLowerCase())) {
+              moviesList.push(movie);
+            }
+          })
+        }
+        localStorage.setItem('keyword', keyword);
+        localStorage.setItem('movies', JSON.stringify(movies));
+        console.log(JSON.parse(localStorage.getItem('movies')));
+        moviesList.length === 0 && setIsMoviesNotFound(true);
+        setMovies(moviesList);
+      })
+      .catch((err) => {
 
+      })
+  }
 
   React.useEffect(() => {
-    setIsLoading(true);
     if (loggedIn) {
-      const promises = [api.getUserInfo(token), moviesApi.getMovies()];
-      Promise.all(promises)
+      Promise.resolve(api.getUserInfo(token))
         .then((res) => {
-          const [userData, moviesList] = res;
-          setCurrentUser(userData);
-          setMovies(moviesList);
-          console.log(moviesList);
+          setCurrentUser(res);
         })
         .catch((err) => console.log(`Что-то пошло не так :( ${err}`))
-        .finally(() => setIsLoading(false))
     }
   }, [loggedIn])
 
   React.useEffect(() => {
     getToken();
-    // eslint-disable-next-line
   }, []);
 
   React.useEffect(() => {
@@ -171,6 +194,7 @@ function App() {
               movies={movies}
               loggedIn={loggedIn}
               isLoading={isLoading}
+              handleSearch={handleSearch}
             />
           </Route>
           <Route exact path='/saved-movies'>

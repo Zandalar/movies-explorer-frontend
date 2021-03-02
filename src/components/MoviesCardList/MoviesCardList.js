@@ -26,16 +26,17 @@ function MoviesCardList({movies, isLoading}) {
   return (
     <>
       <section className='cards'>
-        <ul className='cards__list'>
-          {isLoading
-            ? <Preloader />
-            : newMoviesList.map(data => {
-              return (
-                <MoviesCard key={data.id} data={data} />
-              )
-            })
-          }
+        {isLoading
+          ? <Preloader />
+          : <ul className='cards__list'>
+              {newMoviesList.map(data => {
+                return (
+                  <MoviesCard key={data.id} data={data} />
+                )
+              })
+            }
         </ul>
+        }
       </section>
       <MoreButton onMoreClick={handleMoreClick} isButtonActive={isButtonActive} />
     </>

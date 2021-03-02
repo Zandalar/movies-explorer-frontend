@@ -137,6 +137,7 @@ function App() {
     let moviesList = [];
     moviesApi.getMovies()
       .then((data) => {
+        setIsLoading(true);
         if (checked) {
           data.filter((movie) => {
             if (JSON.stringify(movie).toLowerCase().includes(keyword.toLowerCase()) && movie.duration <= 40) {
@@ -159,6 +160,7 @@ function App() {
       .catch((err) => {
 
       })
+      .finally(setIsLoading(false))
   }
 
   React.useEffect(() => {
@@ -206,9 +208,6 @@ function App() {
           </Route>
           <Route exact path='/profile'>
             <Profile
-              idName='profile'
-              name='Виталий'
-              email='test@test.com'
               loggedIn={loggedIn}
               onLogout={handleLogout}
               onUpdateUser={handleUpdateUser}

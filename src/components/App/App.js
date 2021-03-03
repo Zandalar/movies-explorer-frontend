@@ -130,44 +130,26 @@ function App() {
     setIsInfoTooltipPopupOpen(false);
   }
 
-  function handleSearch(keyword, checked) {
-    setMovies([]);
-    localStorage.removeItem('movies');
-    localStorage.removeItem('keyword');
-    let moviesList = [];
-    moviesApi.getMovies()
-      .then((data) => {
-        setIsLoading(true);
-        if (checked) {
-          data.filter((movie) => {
-            if (JSON.stringify(movie).toLowerCase().includes(keyword.toLowerCase()) && movie.duration <= 40) {
-              moviesList.push(movie);
-            }
-          })
-        } else {
-          data.filter((movie) => {
-            if (JSON.stringify(movie).toLowerCase().includes(keyword.toLowerCase())) {
-              moviesList.push(movie);
-            }
-          })
-        }
-        localStorage.setItem('keyword', keyword);
-        localStorage.setItem('movies', JSON.stringify(movies));
-        console.log(JSON.parse(localStorage.getItem('movies')));
-        moviesList.length === 0 && setIsMoviesNotFound(true);
-        setMovies(moviesList);
-      })
-      .catch((err) => {
+  function handleSearch(keyword) {
+    const initialMovies = JSON.parse(localStorage.getItem('movies'));
+    let sortedMovies = [];
 
-      })
-      .finally(setIsLoading(false))
+    initialMovies.filter((movie) => {
+      if (JSON.stringify(movie).toLowerCase().includes(keyword.toLowerCase())) {
+        sortedMovies.push(movie);
+      }
+    })
+    setMovies(sortedMovies);
   }
 
   React.useEffect(() => {
     if (loggedIn) {
-      Promise.resolve(api.getUserInfo(token))
+      const promises = [moviesApi.getMovies(), api.getUserInfo(token)]
+      Promise.all(promises)
         .then((res) => {
-          setCurrentUser(res);
+          const [moviesList, userInfo] = res
+          setCurrentUser(userInfo);
+          localStorage.setItem('movies', JSON.stringify(moviesList));
         })
         .catch((err) => console.log(`Что-то пошло не так :( ${err}`))
     }

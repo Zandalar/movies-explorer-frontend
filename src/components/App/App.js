@@ -149,7 +149,6 @@ function App() {
 
   React.useEffect(() => {
     getToken();
-    setKeyword(localStorage.getItem('keyword'));
     setInitialMovies(JSON.parse(localStorage.getItem('movies')));
   }, []);
 

@@ -133,12 +133,12 @@ function App() {
     setIsInfoTooltipPopupOpen(false);
   }
 
-  function handleSearch(checked) {
+  async function handleSearch(checked) {
     let sortedMovies;
+    const word = localStorage.getItem('keyword')
 
-    if (keyword.length > 0) {
-      sortedMovies = initialMovies.filter(movie => JSON.stringify(movie).toLowerCase().includes(keyword.toLowerCase()));
-      setSortedMovies(sortedMovies);
+    if (word.length > 0) {
+      sortedMovies = initialMovies.filter(movie => JSON.stringify(movie).toLowerCase().includes(word.toLowerCase()));
       if (checked) {
         setMovies(sortedMovies.filter(movie => movie.duration <= 40));
       } else {

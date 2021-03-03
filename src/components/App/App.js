@@ -133,9 +133,9 @@ function App() {
     setIsInfoTooltipPopupOpen(false);
   }
 
-  async function handleSearch(checked) {
+  function handleSearch(checked) {
     let sortedMovies;
-    const word = localStorage.getItem('keyword')
+    const word = localStorage.getItem('keyword') || '';
 
     if (word.length > 0) {
       sortedMovies = initialMovies.filter(movie => JSON.stringify(movie).toLowerCase().includes(word.toLowerCase()));
@@ -146,11 +146,6 @@ function App() {
       }
     }
   }
-
-  React.useEffect(() => {
-    getToken();
-    setInitialMovies(JSON.parse(localStorage.getItem('movies')));
-  }, []);
 
   React.useEffect(() => {
     if (loggedIn) {
@@ -165,7 +160,10 @@ function App() {
     }
   }, [loggedIn])
 
-
+  React.useEffect(() => {
+    getToken();
+    setInitialMovies(JSON.parse(localStorage.getItem('movies')));
+  }, []);
 
   React.useEffect(() => {
     window.addEventListener('keydown', handleEscClick);

@@ -21,7 +21,10 @@ function App() {
   const [infoMessage, setInfoMessage] = React.useState('');
   const [token, setToken] = React.useState('');
   const [movies, setMovies] = React.useState([]);
+  const [sortedMovies, setSortedMovies] = React.useState([]);
   const [isMoviesNotFound, setIsMoviesNotFound] = React.useState(false);
+  const [keyword, setKeyword] = React.useState('');
+  const [initialMovies, setInitialMovies] = React.useState([]);
 
   const history = useHistory();
 
@@ -130,24 +133,32 @@ function App() {
     setIsInfoTooltipPopupOpen(false);
   }
 
-  function handleSearch(keyword) {
-    const initialMovies = JSON.parse(localStorage.getItem('movies'));
-    let sortedMovies = [];
+  function handleSearch(checked) {
+    let sortedMovies;
 
-    initialMovies.filter((movie) => {
-      if (JSON.stringify(movie).toLowerCase().includes(keyword.toLowerCase())) {
-        sortedMovies.push(movie);
+    if (keyword.length > 0) {
+      sortedMovies = initialMovies.filter(movie => JSON.stringify(movie).toLowerCase().includes(keyword.toLowerCase()));
+      setSortedMovies(sortedMovies);
+      if (checked) {
+        setMovies(sortedMovies.filter(movie => movie.duration <= 40));
+      } else {
+        setMovies(sortedMovies);
       }
-    })
-    setMovies(sortedMovies);
+    }
   }
+
+  React.useEffect(() => {
+    getToken();
+    setKeyword(localStorage.getItem('keyword'));
+    setInitialMovies(JSON.parse(localStorage.getItem('movies')));
+  }, []);
 
   React.useEffect(() => {
     if (loggedIn) {
       const promises = [moviesApi.getMovies(), api.getUserInfo(token)]
       Promise.all(promises)
         .then((res) => {
-          const [moviesList, userInfo] = res
+          const [moviesList, userInfo] = res;
           setCurrentUser(userInfo);
           localStorage.setItem('movies', JSON.stringify(moviesList));
         })
@@ -155,9 +166,7 @@ function App() {
     }
   }, [loggedIn])
 
-  React.useEffect(() => {
-    getToken();
-  }, []);
+
 
   React.useEffect(() => {
     window.addEventListener('keydown', handleEscClick);

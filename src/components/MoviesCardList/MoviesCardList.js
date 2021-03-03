@@ -4,18 +4,18 @@ import Preloader from '../Preloader/Preloader';
 import MoreButton from '../MoreButton/MoreButton';
 
 function MoviesCardList({movies, isLoading}) {
-  const [newMoviesList, setNewMoviesList] = React.useState([]);
+  const [renderedMoviesList, setRenderedMoviesList] = React.useState([]);
   const [isButtonActive, setIsButtonActive] = React.useState(false);
 
   function handleMoreClick() {
-    setNewMoviesList(movies.slice(0, newMoviesList.length + 3));
-    if (newMoviesList.length >= movies.length - 3) {
+    setRenderedMoviesList(movies.slice(0, renderedMoviesList.length + 3));
+    if (renderedMoviesList.length >= movies.length - 3) {
       return setIsButtonActive(false);
     }
   }
 
   React.useEffect(() => {
-    setNewMoviesList(movies.slice(0, 3));
+    setRenderedMoviesList(movies.slice(0, 3));
     if (movies.length <= 3) {
       return setIsButtonActive(false);
     } else {
@@ -29,7 +29,7 @@ function MoviesCardList({movies, isLoading}) {
         {isLoading
           ? <Preloader />
           : <ul className='cards__list'>
-              {newMoviesList.map(data => {
+              {renderedMoviesList.map(data => {
                 return (
                   <MoviesCard key={data.id} data={data} />
                 )

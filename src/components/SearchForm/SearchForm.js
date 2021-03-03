@@ -16,7 +16,8 @@ function SearchForm({handleSearch}) {
 
   function handleSubmit(evt) {
     evt.preventDefault();
-    handleSearch(keyword, checked);
+    localStorage.setItem('keyword', keyword);
+    handleSearch(checked);
   }
 
   React.useEffect(() => {
@@ -24,10 +25,12 @@ function SearchForm({handleSearch}) {
     return () => window.removeEventListener('resize', updateWidth);
   });
 
+  React.useEffect(() => {
+    handleSearch(checked);
+  }, [checked]);
+
   function handleCheck() {
-    checked
-    ? setChecked(false)
-    : setChecked(true);
+    setChecked(!checked);
   }
 
   return (

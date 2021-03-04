@@ -2,7 +2,7 @@ import React from 'react';
 import { useLocation } from 'react-router-dom';
 import movie from '../../images/movie.jpg'
 
-function MoviesCard({data}) {
+function MoviesCard({data, handleSaveMovie}) {
   const [isShown, setIsShown] = React.useState(false);
   const [isSaved, setIsSaved] = React.useState(false);
   const location = useLocation().pathname;
@@ -11,8 +11,9 @@ function MoviesCard({data}) {
     setIsShown(!isShown);
   }
 
-  function handleSaveMovie() {
+  function handleSave() {
     setIsSaved(true);
+    handleSaveMovie(data);
   }
 
   function handleImageClick() {
@@ -29,7 +30,7 @@ function MoviesCard({data}) {
       <button
         className={`card__save ${isShown && 'card__save_active'}`}
         type='button'
-        onClick={handleSaveMovie}
+        onClick={handleSave}
       >
         Сохранить
       </button>}

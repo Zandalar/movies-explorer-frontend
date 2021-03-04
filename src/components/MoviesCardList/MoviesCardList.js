@@ -3,7 +3,7 @@ import MoviesCard from '../MoviesCard/MoviesCard';
 import Preloader from '../Preloader/Preloader';
 import MoreButton from '../MoreButton/MoreButton';
 
-function MoviesCardList({movies, isLoading, windowWidth}) {
+function MoviesCardList({movies, isLoading, windowWidth, handleSaveMovie}) {
   const [renderedMoviesList, setRenderedMoviesList] = React.useState([]);
   const [isButtonActive, setIsButtonActive] = React.useState(false);
   const [renderedCardsCount, setRenderedCardsCount] = React.useState(0);
@@ -50,7 +50,11 @@ function MoviesCardList({movies, isLoading, windowWidth}) {
           : <ul className='cards__list'>
               {renderedMoviesList.map(data => {
                 return (
-                  <MoviesCard key={data.id} data={data} />
+                  <MoviesCard
+                    key={data.id}
+                    data={data}
+                    handleSaveMovie={handleSaveMovie}
+                  />
                 )
               })
             }

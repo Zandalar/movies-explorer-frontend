@@ -4,7 +4,7 @@ import MoviesCardList from '../MoviesCardList/MoviesCardList';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
 
-function Movies({movies, loggedIn, isLoading, handleSearch, windowWidth}) {
+function Movies({movies, loggedIn, isLoading, handleSearch, windowWidth, handleSaveMovie}) {
   return (
     <>
       <Header
@@ -20,6 +20,7 @@ function Movies({movies, loggedIn, isLoading, handleSearch, windowWidth}) {
           movies={movies}
           isLoading={isLoading}
           windowWidth={windowWidth}
+          handleSaveMovie={handleSaveMovie}
         />
       </main>
       <Footer />

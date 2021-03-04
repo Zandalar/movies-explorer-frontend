@@ -21,7 +21,7 @@ function App() {
   const [infoMessage, setInfoMessage] = React.useState('');
   const [token, setToken] = React.useState('');
   const [movies, setMovies] = React.useState([]);
-  const [sortedMovies, setSortedMovies] = React.useState([]);
+  const [savedMovies, setSavedMovies] = React.useState([]);
   const [isMoviesNotFound, setIsMoviesNotFound] = React.useState(false);
   const [keyword, setKeyword] = React.useState('');
   const [initialMovies, setInitialMovies] = React.useState([]);
@@ -120,6 +120,18 @@ function App() {
       })
   }
 
+  function getSavedMovies() {
+    if (loggedIn){
+      let savedMovies;
+      api.getSavedMovies()
+        .then((movies) => {
+          savedMovies = movies.filter((movie) => (movie.owner === currentUser.id));
+          setSavedMovies(savedMovies);
+        })
+        .catch((err) => console.log(`Что-то пошло не так :( ${err}`))
+    }
+  }
+
   function handleEscClick(evt) {
     if (evt.key === 'Escape') {
       closeAllPopups();
@@ -152,6 +164,10 @@ function App() {
     }
   }
 
+  function handleSaveMovie(movie) {
+    api.saveMovie(movie);
+  }
+
   React.useEffect(() => {
     if (loggedIn) {
       const promises = [moviesApi.getMovies(), api.getUserInfo(token)]
@@ -168,7 +184,8 @@ function App() {
 
   React.useEffect(() => {
     getToken();
-
+    getSavedMovies();
+    console.log(savedMovies);
   }, []);
 
   React.useEffect(() => {
@@ -200,6 +217,7 @@ function App() {
               isLoading={isLoading}
               handleSearch={handleSearch}
               windowWidth={windowWidth}
+              handleSaveMovie={handleSaveMovie}
             />
           </Route>
           <Route exact path='/saved-movies'>

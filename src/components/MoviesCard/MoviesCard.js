@@ -8,9 +8,7 @@ function MoviesCard({data}) {
   const location = useLocation().pathname;
 
   function handleSaveButton() {
-    isShown
-      ? setIsShown(false)
-      : setIsShown(true)
+    setIsShown(!isShown);
   }
 
   function handleSaveMovie() {
@@ -51,7 +49,7 @@ function MoviesCard({data}) {
       <div className='card__container'>
         <p className='card__name'>{data.nameRU}</p>
         <div className='card__duration'>
-          <p className='card__duration-text'>1ч 17м</p>
+          <p className='card__duration-text'>{`${Math.floor(data.duration / 60)}ч ${data.duration % 60}м`}</p>
         </div>
       </div>
     </li>

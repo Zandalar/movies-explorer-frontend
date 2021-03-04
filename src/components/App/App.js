@@ -155,6 +155,7 @@ function App() {
           const [moviesList, userInfo] = res;
           setCurrentUser(userInfo);
           localStorage.setItem('movies', JSON.stringify(moviesList));
+          setInitialMovies(JSON.parse(localStorage.getItem('movies')));
         })
         .catch((err) => console.log(`Что-то пошло не так :( ${err}`))
     }
@@ -162,7 +163,7 @@ function App() {
 
   React.useEffect(() => {
     getToken();
-    setInitialMovies(JSON.parse(localStorage.getItem('movies')));
+
   }, []);
 
   React.useEffect(() => {

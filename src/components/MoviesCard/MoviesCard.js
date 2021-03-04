@@ -2,7 +2,7 @@ import React from 'react';
 import { useLocation } from 'react-router-dom';
 import movie from '../../images/movie.jpg'
 
-function MoviesCard({data, handleSaveMovie}) {
+function MoviesCard({data, handleSaveMovie, handleDeleteMovie}) {
   const [isShown, setIsShown] = React.useState(false);
   const [isSaved, setIsSaved] = React.useState(false);
   const location = useLocation().pathname;
@@ -16,15 +16,22 @@ function MoviesCard({data, handleSaveMovie}) {
     handleSaveMovie(data);
   }
 
+  function handleDelete() {
+    setIsSaved(false);
+    handleDeleteMovie(data._id);
+  }
+
   function handleImageClick() {
-    window.open(data.trailerLink, '_blank');
+    location === '/movies'
+    ? window.open(data.trailerLink, '_blank')
+    : window.open(data.trailer, '_blank')
   }
 
   return (
     <li className='card' onMouseEnter={handleSaveButton} onMouseLeave={handleSaveButton} id={data.id}>
       {(location === '/movies' && isSaved)
       &&
-      <div className='card__saved'/>}
+      <div className='card__saved' onClick={handleDelete} />}
       {(location === '/movies' && !isSaved)
       &&
       <button
@@ -39,14 +46,22 @@ function MoviesCard({data, handleSaveMovie}) {
       <button
         className={`card__delete ${isShown && 'card__save_active'}`}
         type='button'
-        onClick={handleSaveMovie}
+        onClick={handleDelete}
       />}
-      <img
-        className='card__image'
-        src={data.image !== null ? `https://api.nomoreparties.co${data.image.url}` : movie}
-        alt={data.nameRU}
-        onClick={handleImageClick}
-      />
+      {location === '/saved-movies'
+        ? <img
+          className='card__image'
+          src={data.image !== null ? data.image : movie}
+          alt={data.nameRU}
+          onClick={handleImageClick}
+        />
+        : <img
+          className='card__image'
+          src={data.image !== null ? `https://api.nomoreparties.co${data.image.url}` : movie}
+          alt={data.nameRU}
+          onClick={handleImageClick}
+        />
+      }
       <div className='card__container'>
         <p className='card__name'>{data.nameRU}</p>
         <div className='card__duration'>

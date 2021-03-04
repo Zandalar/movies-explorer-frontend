@@ -4,13 +4,25 @@ import MoviesCardList from '../MoviesCardList/MoviesCardList';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
 
-function SavedMovies({movies, loggedIn, isLoading}) {
+function SavedMovies({savedMovies, loggedIn, isLoading, handleSearch, windowWidth, handleSaveMovie, handleDeleteMovie}) {
   return (
     <>
-      <Header loggedIn={loggedIn} />
+      <Header
+        loggedIn={loggedIn}
+        windowWidth={windowWidth}
+      />
       <main className='saved-movies'>
-        <SearchForm />
-        <MoviesCardList movies={movies} isLoading={isLoading} />
+        <SearchForm
+          handleSearch={handleSearch}
+          windowWidth={windowWidth}
+        />
+        <MoviesCardList
+          movies={savedMovies}
+          isLoading={isLoading}
+          windowWidth={windowWidth}
+          handleSaveMovie={handleSaveMovie}
+          handleDeleteMovie={handleDeleteMovie}
+        />
       </main>
       <Footer />
     </>

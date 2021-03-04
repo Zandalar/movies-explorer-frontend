@@ -1,13 +1,15 @@
 import React from 'react';
+import { useLocation } from 'react-router-dom';
 import MoviesCard from '../MoviesCard/MoviesCard';
 import Preloader from '../Preloader/Preloader';
 import MoreButton from '../MoreButton/MoreButton';
 
-function MoviesCardList({movies, isLoading, windowWidth, handleSaveMovie}) {
+function MoviesCardList({movies, isLoading, windowWidth, handleSaveMovie, handleDeleteMovie}) {
   const [renderedMoviesList, setRenderedMoviesList] = React.useState([]);
   const [isButtonActive, setIsButtonActive] = React.useState(false);
   const [renderedCardsCount, setRenderedCardsCount] = React.useState(0);
   const [addedCardsCount, setAddedCardsCount] = React.useState(0);
+  const location = useLocation().pathname;
 
   function cardsCount() {
     if (windowWidth >= 1100) {
@@ -51,9 +53,10 @@ function MoviesCardList({movies, isLoading, windowWidth, handleSaveMovie}) {
               {renderedMoviesList.map(data => {
                 return (
                   <MoviesCard
-                    key={data.id}
+                    key={location === '/movies' ? data.id : data._id}
                     data={data}
                     handleSaveMovie={handleSaveMovie}
+                    handleDeleteMovie={handleDeleteMovie}
                   />
                 )
               })

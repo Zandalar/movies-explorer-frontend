@@ -121,15 +121,11 @@ function App() {
   }
 
   function getSavedMovies() {
-    if (loggedIn){
-      let savedMovies;
       api.getSavedMovies()
         .then((movies) => {
-          savedMovies = movies.filter((movie) => (movie.owner === currentUser.id));
-          setSavedMovies(savedMovies);
+          setSavedMovies(movies);
         })
         .catch((err) => console.log(`Что-то пошло не так :( ${err}`))
-    }
   }
 
   function handleEscClick(evt) {
@@ -166,6 +162,12 @@ function App() {
 
   function handleSaveMovie(movie) {
     api.saveMovie(movie);
+    getSavedMovies();
+  }
+
+  function handleDeleteMovie(id) {
+    api.deleteMovie(id);
+    getSavedMovies();
   }
 
   React.useEffect(() => {
@@ -185,20 +187,16 @@ function App() {
   React.useEffect(() => {
     getToken();
     getSavedMovies();
-    console.log(savedMovies);
   }, []);
 
   React.useEffect(() => {
+    window.addEventListener('resize', updateWidth);
     window.addEventListener('keydown', handleEscClick);
     return () => {
+      window.removeEventListener('resize', updateWidth);
       window.removeEventListener('keydown', handleEscClick);
     }
   })
-
-  React.useEffect(() => {
-    window.addEventListener('resize', updateWidth);
-    return () => window.removeEventListener('resize', updateWidth);
-  });
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
@@ -218,13 +216,18 @@ function App() {
               handleSearch={handleSearch}
               windowWidth={windowWidth}
               handleSaveMovie={handleSaveMovie}
+              handleDeleteMovie={handleDeleteMovie}
             />
           </Route>
           <Route exact path='/saved-movies'>
             <SavedMovies
-              movies={movies}
+              savedMovies={savedMovies}
               loggedIn={loggedIn}
               isLoading={isLoading}
+              handleSearch={handleSearch}
+              windowWidth={windowWidth}
+              handleSaveMovie={handleSaveMovie}
+              handleDeleteMovie={handleDeleteMovie}
             />
           </Route>
           <Route exact path='/profile'>

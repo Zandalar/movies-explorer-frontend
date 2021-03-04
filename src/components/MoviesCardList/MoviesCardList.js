@@ -3,25 +3,44 @@ import MoviesCard from '../MoviesCard/MoviesCard';
 import Preloader from '../Preloader/Preloader';
 import MoreButton from '../MoreButton/MoreButton';
 
-function MoviesCardList({movies, isLoading}) {
+function MoviesCardList({movies, isLoading, windowWidth}) {
   const [renderedMoviesList, setRenderedMoviesList] = React.useState([]);
   const [isButtonActive, setIsButtonActive] = React.useState(false);
+  const [renderedCardsCount, setRenderedCardsCount] = React.useState(0);
+  const [addedCardsCount, setAddedCardsCount] = React.useState(0);
+
+  function cardsCount() {
+    if (windowWidth >= 1100) {
+      setRenderedCardsCount(12);
+      setAddedCardsCount(3);
+    } else if (windowWidth < 1100 && windowWidth > 600) {
+      setRenderedCardsCount(8);
+      setAddedCardsCount(2);
+    } else {
+      setRenderedCardsCount(5);
+      setAddedCardsCount(2);
+    }
+  }
 
   function handleMoreClick() {
-    setRenderedMoviesList(movies.slice(0, renderedMoviesList.length + 3));
-    if (renderedMoviesList.length >= movies.length - 3) {
-      return setIsButtonActive(false);
+    setRenderedMoviesList(movies.slice(0, renderedMoviesList.length + addedCardsCount));
+    if (renderedMoviesList.length >= movies.length - addedCardsCount) {
+      setIsButtonActive(false);
     }
   }
 
   React.useEffect(() => {
-    setRenderedMoviesList(movies.slice(0, 3));
-    if (movies.length <= 3) {
-      return setIsButtonActive(false);
+    setRenderedMoviesList(movies.slice(0, renderedCardsCount));
+    if (movies.length <= renderedCardsCount) {
+      setIsButtonActive(false);
     } else {
-      return setIsButtonActive(true);
+      setIsButtonActive(true);
     }
   }, [movies]);
+
+  React.useEffect(() => {
+    cardsCount();
+  }, [windowWidth])
 
   return (
     <>

@@ -25,6 +25,7 @@ function App() {
   const [isMoviesNotFound, setIsMoviesNotFound] = React.useState(false);
   const [keyword, setKeyword] = React.useState('');
   const [initialMovies, setInitialMovies] = React.useState([]);
+  const [windowWidth, setWindowWidth] = React.useState(window.innerWidth);
 
   const history = useHistory();
 
@@ -133,6 +134,10 @@ function App() {
     setIsInfoTooltipPopupOpen(false);
   }
 
+  function updateWidth() {
+    setWindowWidth(window.innerWidth);
+  }
+
   function handleSearch(checked) {
     let sortedMovies;
     const word = localStorage.getItem('keyword') || '';
@@ -173,12 +178,20 @@ function App() {
     }
   })
 
+  React.useEffect(() => {
+    window.addEventListener('resize', updateWidth);
+    return () => window.removeEventListener('resize', updateWidth);
+  });
+
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <div className="app">
         <Switch>
           <Route exact path='/'>
-            <Main loggedIn={loggedIn} />
+            <Main
+              loggedIn={loggedIn}
+              windowWidth={windowWidth}
+            />
           </Route>
           <Route exact path='/movies'>
             <Movies
@@ -186,6 +199,7 @@ function App() {
               loggedIn={loggedIn}
               isLoading={isLoading}
               handleSearch={handleSearch}
+              windowWidth={windowWidth}
             />
           </Route>
           <Route exact path='/saved-movies'>

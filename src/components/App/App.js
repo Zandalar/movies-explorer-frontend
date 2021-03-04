@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Switch, Redirect, useHistory } from 'react-router-dom';
+import { Route, Switch, Redirect, useHistory, useLocation } from 'react-router-dom';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import Main from '../Main/Main';
 import Movies from '../Movies/Movies';
@@ -27,6 +27,7 @@ function App() {
   const [initialMovies, setInitialMovies] = React.useState([]);
   const [windowWidth, setWindowWidth] = React.useState(window.innerWidth);
 
+  const location = useLocation().pathname;
   const history = useHistory();
 
   function handleRegister(name, email, password) {
@@ -149,9 +150,10 @@ function App() {
   function handleSearch(checked) {
     let sortedMovies;
     const word = localStorage.getItem('keyword') || '';
+    const filteredMovies = location === '/movies' ? initialMovies : savedMovies;
 
     if (word.length > 0) {
-      sortedMovies = initialMovies.filter(movie => JSON.stringify(movie).toLowerCase().includes(word.toLowerCase()));
+      sortedMovies = filteredMovies.filter(movie => JSON.stringify(movie).toLowerCase().includes(word.toLowerCase()));
       if (checked) {
         setMovies(sortedMovies.filter(movie => movie.duration <= 40));
       } else {
@@ -178,7 +180,7 @@ function App() {
           const [moviesList, userInfo] = res;
           setCurrentUser(userInfo);
           localStorage.setItem('movies', JSON.stringify(moviesList));
-          setInitialMovies(JSON.parse(localStorage.getItem('movies')));
+          setInitialMovies(moviesList);
         })
         .catch((err) => console.log(`Что-то пошло не так :( ${err}`))
     }

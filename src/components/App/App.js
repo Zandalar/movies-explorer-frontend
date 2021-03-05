@@ -25,6 +25,7 @@ function App() {
   const [isMoviesNotFound, setIsMoviesNotFound] = React.useState(false);
   const [keyword, setKeyword] = React.useState('');
   const [initialMovies, setInitialMovies] = React.useState([]);
+  const [initialSavedMovies, setInitialSavedMovies] = React.useState([]);
   const [windowWidth, setWindowWidth] = React.useState(window.innerWidth);
 
   const location = useLocation().pathname;
@@ -124,7 +125,7 @@ function App() {
   function getSavedMovies() {
       api.getSavedMovies()
         .then((movies) => {
-          setSavedMovies(movies);
+          setInitialSavedMovies(movies);
         })
         .catch((err) => console.log(`Что-то пошло не так :( ${err}`))
   }
@@ -150,14 +151,18 @@ function App() {
   function handleSearch(checked) {
     let sortedMovies;
     const word = localStorage.getItem('keyword') || '';
-    const filteredMovies = location === '/movies' ? initialMovies : savedMovies;
+    const filteredMovies = location === '/movies' ? initialMovies : initialSavedMovies;
 
     if (word.length > 0) {
       sortedMovies = filteredMovies.filter(movie => JSON.stringify(movie).toLowerCase().includes(word.toLowerCase()));
       if (checked) {
-        setMovies(sortedMovies.filter(movie => movie.duration <= 40));
+        location === '/movies'
+        ? setMovies(sortedMovies.filter(movie => movie.duration <= 40))
+        : setSavedMovies(sortedMovies.filter(movie => movie.duration <= 40))
       } else {
-        setMovies(sortedMovies);
+        location === '/movies'
+        ? setMovies(sortedMovies)
+        : setSavedMovies(sortedMovies)
       }
     }
   }
@@ -180,7 +185,7 @@ function App() {
           const [moviesList, userInfo] = res;
           setCurrentUser(userInfo);
           localStorage.setItem('movies', JSON.stringify(moviesList));
-          setInitialMovies(moviesList);
+          setInitialMovies(JSON.parse(localStorage.getItem('movies')));
         })
         .catch((err) => console.log(`Что-то пошло не так :( ${err}`))
     }

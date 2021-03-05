@@ -7,7 +7,7 @@ import MoreButton from '../MoreButton/MoreButton';
 function MoviesCardList({movies, isLoading, windowWidth, handleSaveMovie, handleDeleteMovie}) {
   const [renderedMoviesList, setRenderedMoviesList] = React.useState([]);
   const [isButtonActive, setIsButtonActive] = React.useState(false);
-  const [renderedCardsCount, setRenderedCardsCount] = React.useState(0);
+  const [renderedCardsCount, setRenderedCardsCount] = React.useState(12);
   const [addedCardsCount, setAddedCardsCount] = React.useState(0);
   const location = useLocation().pathname;
 
@@ -32,6 +32,10 @@ function MoviesCardList({movies, isLoading, windowWidth, handleSaveMovie, handle
   }
 
   React.useEffect(() => {
+    cardsCount();
+  }, [windowWidth]);
+
+  React.useEffect(() => {
     setRenderedMoviesList(movies.slice(0, renderedCardsCount));
     if (movies.length <= renderedCardsCount) {
       setIsButtonActive(false);
@@ -40,9 +44,7 @@ function MoviesCardList({movies, isLoading, windowWidth, handleSaveMovie, handle
     }
   }, [movies]);
 
-  React.useEffect(() => {
-    cardsCount();
-  }, [windowWidth])
+
 
   return (
     <>

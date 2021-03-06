@@ -169,12 +169,21 @@ function App() {
 
   function handleSaveMovie(movie) {
     api.saveMovie(movie);
+    const newSavedMovie = initialMovies.find(item => item.id === movie.id);
+    newSavedMovie.saved = 'true';
+    setInitialMovies(initialMovies.map(item => item.id === newSavedMovie.id ? newSavedMovie : item));
+    console.log(initialMovies);
+    localStorage.setItem('movies', initialMovies);
     getSavedMovies();
   }
 
-  function handleDeleteMovie(id) {
-    api.deleteMovie(id);
-    getSavedMovies();
+  function handleDeleteMovie(movie) {
+    api.deleteMovie(movie._id)
+      .then(() => {
+        const newMovies = savedMovies.filter(item => item !== movie);
+        setSavedMovies(newMovies);
+      })
+      .catch((err) => console.log(`Что-то пошло не так :( ${err}`))
   }
 
   React.useEffect(() => {

@@ -36,7 +36,7 @@ export function checkToken(jwt) {
     .then(checkResponse);
 }
 
-export function getUserInfo(token) {
+export function getUserInfo() {
   return fetch(`${MAIN_URL}/users/me`, {
     headers: {
       'Accept': 'application/json',
@@ -47,7 +47,7 @@ export function getUserInfo(token) {
     .then(checkResponse);
 }
 
-export function setUserInfo(data, token) {
+export function setUserInfo(data) {
   return fetch(`${MAIN_URL}/users/me`, {
     method: 'PATCH',
     headers: {

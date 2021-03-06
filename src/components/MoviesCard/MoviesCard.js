@@ -18,7 +18,7 @@ function MoviesCard({data, handleSaveMovie, handleDeleteMovie}) {
 
   function handleDelete() {
     setIsSaved(false);
-    handleDeleteMovie(data._id);
+    handleDeleteMovie(data);
   }
 
   function handleImageClick() {
@@ -28,8 +28,8 @@ function MoviesCard({data, handleSaveMovie, handleDeleteMovie}) {
   }
 
   return (
-    <li className='card' onMouseEnter={handleSaveButton} onMouseLeave={handleSaveButton} id={data.id}>
-      {(location === '/movies' && isSaved)
+    <li className='card' onMouseEnter={handleSaveButton} onMouseLeave={handleSaveButton} id={location === '/movies' ? data.id : data._id}>
+      {(location === '/movies' && data.saved === 'true')
       &&
       <div className='card__saved' onClick={handleDelete} />}
       {(location === '/movies' && !isSaved)

@@ -29,10 +29,10 @@ function MoviesCard({data, handleSaveMovie, handleDeleteMovie}) {
 
   return (
     <li className='card' onMouseEnter={handleSaveButton} onMouseLeave={handleSaveButton} id={location === '/movies' ? data.id : data._id}>
-      {(location === '/movies' && data.saved === 'true')
+      {(location === '/movies' && data.saved === true)
       &&
       <div className='card__saved' onClick={handleDelete} />}
-      {(location === '/movies' && !isSaved)
+      {(location === '/movies' && data.saved !== true)
       &&
       <button
         className={`card__save ${isShown && 'card__save_active'}`}

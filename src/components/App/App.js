@@ -170,10 +170,10 @@ function App() {
   function handleSaveMovie(movie) {
     api.saveMovie(movie);
     const newSavedMovie = initialMovies.find(item => item.id === movie.id);
-    newSavedMovie.saved = 'true';
+    newSavedMovie.saved = true;
     setInitialMovies(initialMovies.map(item => item.id === newSavedMovie.id ? newSavedMovie : item));
     console.log(initialMovies);
-    localStorage.setItem('movies', initialMovies);
+    localStorage.setItem('movies', JSON.stringify(initialMovies));
     getSavedMovies();
   }
 
@@ -188,22 +188,27 @@ function App() {
 
   React.useEffect(() => {
     if (loggedIn) {
-      const promises = [moviesApi.getMovies(), api.getUserInfo(token)]
-      Promise.all(promises)
+      api.getUserInfo()
         .then((res) => {
-          const [moviesList, userInfo] = res;
-          setCurrentUser(userInfo);
-          localStorage.setItem('movies', JSON.stringify(moviesList));
-          setInitialMovies(JSON.parse(localStorage.getItem('movies')));
+          setCurrentUser(res);
         })
-        .catch((err) => console.log(`Что-то пошло не так :( ${err}`))
+        .catch((err) => console.log(`Что-то пошло не так :( ${err}`));
     }
   }, [loggedIn])
 
   React.useEffect(() => {
     getToken();
     getSavedMovies();
-  }, []);
+    if (localStorage.getItem('movies') === null) {
+      moviesApi.getMovies()
+        .then((res) => {
+          localStorage.setItem('movies', JSON.stringify(res));
+          setInitialMovies(res);
+        })
+    } else {
+      setInitialMovies(JSON.parse(localStorage.getItem('movies')));
+    }
+  }, [loggedIn]);
 
   React.useEffect(() => {
     window.addEventListener('resize', updateWidth);

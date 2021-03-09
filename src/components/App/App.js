@@ -74,6 +74,8 @@ function App() {
           setInfoMessage('Не передано одно из полей');
         } else if (err.status === 401) {
           setInfoMessage('Пользователь не найден, либо неверно указаны данные.');
+        } else if (err.status === 429) {
+          setInfoMessage(`Ошибка: ${err.status}. Слишком много запросов. Попробуйте позже`);
         } else {
           setInfoMessage(`Ошибка: ${err.status}`);
         }
@@ -127,7 +129,11 @@ function App() {
         .then((movies) => {
           setInitialSavedMovies(movies);
         })
-        .catch((err) => console.log(`Что-то пошло не так :( ${err}`))
+        .catch((err) => {
+          setIsMoviesNotFound(true);
+          setInitialSavedMovies([]);
+          console.log(`Нет сохраненных фильмов ${err}`)
+        })
   }
 
   function handleEscClick(evt) {
@@ -149,6 +155,7 @@ function App() {
   }
 
   function handleSearch(checked) {
+    setIsLoading(true);
     let sortedMovies;
     const word = localStorage.getItem('keyword') || '';
     const filteredMovies = location === '/movies' ? initialMovies : initialSavedMovies;
@@ -165,23 +172,31 @@ function App() {
         : setSavedMovies(sortedMovies)
       }
     }
+    setIsLoading(false);
   }
 
   function handleSaveMovie(movie) {
-    api.saveMovie(movie);
-    const newSavedMovie = initialMovies.find(item => item.id === movie.id);
-    newSavedMovie.saved = true;
-    setInitialMovies(initialMovies.map(item => item.id === newSavedMovie.id ? newSavedMovie : item));
-    console.log(initialMovies);
-    localStorage.setItem('movies', JSON.stringify(initialMovies));
-    getSavedMovies();
+    api.saveMovie(movie)
+      .then(() => {
+        getSavedMovies();
+        const newSavedMovie = initialMovies.find(item => item.id === movie.id);
+        newSavedMovie.saved = true;
+        setInitialMovies(initialMovies.map(item => item.id === newSavedMovie.id ? newSavedMovie : item));
+        localStorage.setItem('movies', JSON.stringify(initialMovies));
+      })
+      .catch((err) => console.log(`Что-то пошло не так :( ${err}`))
   }
 
   function handleDeleteMovie(movie) {
     api.deleteMovie(movie._id)
       .then(() => {
+        getSavedMovies();
         const newMovies = savedMovies.filter(item => item !== movie);
+        const deletedMovie = initialMovies.find(item => item.id === movie.movieId);
+        delete deletedMovie.saved;
         setSavedMovies(newMovies);
+        setInitialMovies(initialMovies.map(item => item.id === deletedMovie.id ? deletedMovie : item));
+        localStorage.setItem('movies', JSON.stringify(initialMovies));
       })
       .catch((err) => console.log(`Что-то пошло не так :( ${err}`))
   }
@@ -238,6 +253,7 @@ function App() {
               windowWidth={windowWidth}
               handleSaveMovie={handleSaveMovie}
               handleDeleteMovie={handleDeleteMovie}
+              isMoviesNotFound={isMoviesNotFound}
             />
           </Route>
           <Route exact path='/saved-movies'>
@@ -249,6 +265,7 @@ function App() {
               windowWidth={windowWidth}
               handleSaveMovie={handleSaveMovie}
               handleDeleteMovie={handleDeleteMovie}
+              isMoviesNotFound={isMoviesNotFound}
             />
           </Route>
           <Route exact path='/profile'>

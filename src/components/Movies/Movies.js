@@ -3,6 +3,7 @@ import SearchForm from '../SearchForm/SearchForm';
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
+import Preloader from '../Preloader/Preloader';
 
 function Movies({movies, loggedIn, isLoading, handleSearch, windowWidth, handleSaveMovie, handleDeleteMovie}) {
   return (
@@ -16,13 +17,17 @@ function Movies({movies, loggedIn, isLoading, handleSearch, windowWidth, handleS
           handleSearch={handleSearch}
           windowWidth={windowWidth}
         />
-        <MoviesCardList
-          movies={movies}
-          isLoading={isLoading}
-          windowWidth={windowWidth}
-          handleSaveMovie={handleSaveMovie}
-          handleDeleteMovie={handleDeleteMovie}
-        />
+        {isLoading
+          ? <Preloader />
+          : <MoviesCardList
+            movies={movies}
+            isLoading={isLoading}
+            windowWidth={windowWidth}
+            handleSaveMovie={handleSaveMovie}
+            handleDeleteMovie={handleDeleteMovie}
+            notFoundMessage={movies.length === 0 && 'Ничего не найдено'}
+            />
+        }
       </main>
       <Footer />
     </>

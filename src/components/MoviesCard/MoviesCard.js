@@ -4,7 +4,6 @@ import movie from '../../images/movie.jpg'
 
 function MoviesCard({data, handleSaveMovie, handleDeleteMovie}) {
   const [isShown, setIsShown] = React.useState(false);
-  const [isSaved, setIsSaved] = React.useState(false);
   const location = useLocation().pathname;
 
   function handleSaveButton() {
@@ -12,12 +11,10 @@ function MoviesCard({data, handleSaveMovie, handleDeleteMovie}) {
   }
 
   function handleSave() {
-    setIsSaved(true);
     handleSaveMovie(data);
   }
 
   function handleDelete() {
-    setIsSaved(false);
     handleDeleteMovie(data);
   }
 

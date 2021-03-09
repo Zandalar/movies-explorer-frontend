@@ -1,10 +1,9 @@
 import React from 'react';
 import { useLocation } from 'react-router-dom';
 import MoviesCard from '../MoviesCard/MoviesCard';
-import Preloader from '../Preloader/Preloader';
 import MoreButton from '../MoreButton/MoreButton';
 
-function MoviesCardList({movies, isLoading, windowWidth, handleSaveMovie, handleDeleteMovie}) {
+function MoviesCardList({movies, isLoading, windowWidth, handleSaveMovie, handleDeleteMovie, notFoundMessage}) {
   const [renderedMoviesList, setRenderedMoviesList] = React.useState([]);
   const [isButtonActive, setIsButtonActive] = React.useState(false);
   const [renderedCardsCount, setRenderedCardsCount] = React.useState(12);
@@ -49,8 +48,8 @@ function MoviesCardList({movies, isLoading, windowWidth, handleSaveMovie, handle
   return (
     <>
       <section className='cards'>
-        {isLoading
-          ? <Preloader />
+        {movies.length === 0
+          ? <p className='cards__not-found'>{notFoundMessage}</p>
           : <ul className='cards__list'>
               {renderedMoviesList.map(data => {
                 return (

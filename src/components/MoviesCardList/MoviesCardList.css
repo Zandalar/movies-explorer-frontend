@@ -17,6 +17,12 @@
   justify-content: center;
 }
 
+.cards__not-found {
+  font-size: 40px;
+  font-weight: bold;
+  text-align: center;
+}
+
 @media all and (max-width: 800px) {
   .cards {
     padding: 70px 0 12px;

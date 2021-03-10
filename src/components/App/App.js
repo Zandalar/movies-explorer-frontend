@@ -63,7 +63,7 @@ function App() {
         history.push('/movies');
       })
       .catch((err) => {
-        errors(err);
+        setInfoMessage(errors(err));
         setStatus(false);
       })
       .finally(() => {
@@ -201,7 +201,7 @@ function App() {
         .then((res) => {
           setCurrentUser(res);
         })
-        .catch(err => errors(err))
+        .catch(err => setInfoMessage(errors(err)))
     }
   }, [loggedIn])
 

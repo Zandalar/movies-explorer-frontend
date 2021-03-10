@@ -42,17 +42,17 @@ function Profile({loggedIn, onLogout, onUpdateUser}) {
             </label>
             {isEditActive
               ? <input
-                className={`profile__value ${isEditActive && 'profile__value_active'}`}
-                type='text'
-                id='user__name'
-                name='name'
-                disabled={!isEditActive && true}
-                minLength='2'
-                maxLength='40'
-                onChange={handleChange}
-                value={values.name || ''}
-                required
-              />
+                  className={`profile__value ${isEditActive && 'profile__value_active'}`}
+                  type='text'
+                  id='user__name'
+                  name='name'
+                  disabled={!isEditActive && true}
+                  minLength='2'
+                  maxLength='40'
+                  onChange={handleChange}
+                  value={values.name || ''}
+                  required
+                />
               : <p className='profile__placeholder'>{currentUser.name}</p>
             }
 
@@ -71,15 +71,15 @@ function Profile({loggedIn, onLogout, onUpdateUser}) {
             </label>
             {isEditActive
               ? <input
-                className={`profile__value ${isEditActive && 'profile__value_active'}`}
-                type='email'
-                id='user__email'
-                name='email'
-                disabled={!isEditActive && true}
-                onChange={handleChange}
-                value={values.email || ''}
-                required
-              />
+                  className={`profile__value ${isEditActive && 'profile__value_active'}`}
+                  type='email'
+                  id='user__email'
+                  name='email'
+                  disabled={!isEditActive && true}
+                  onChange={handleChange}
+                  value={values.email || ''}
+                  required
+                />
               : <p className='profile__placeholder'>{currentUser.email}</p>
             }
 
@@ -92,9 +92,9 @@ function Profile({loggedIn, onLogout, onUpdateUser}) {
         </form>
         {isEditActive
           ? <Submit
-            buttonText='Сохранить'
-            formId='profile'
-            isValid={isValid}
+              buttonText='Сохранить'
+              formId='profile'
+              isValid={isValid}
             />
           : <ul className='profile__menu'>
             <li className='profile__menu-item'>

@@ -40,18 +40,22 @@ function Profile({loggedIn, onLogout, onUpdateUser}) {
             >
               Имя
             </label>
-            <input
-              className={`profile__value ${isEditActive && 'profile__value_active'}`}
-              type='text'
-              id='user__name'
-              name='name'
-              disabled={!isEditActive && true}
-              minLength='2'
-              maxLength='40'
-              onChange={handleChange}
-              value={values.name || ''}
-              required
-            />
+            {isEditActive
+              ? <input
+                className={`profile__value ${isEditActive && 'profile__value_active'}`}
+                type='text'
+                id='user__name'
+                name='name'
+                disabled={!isEditActive && true}
+                minLength='2'
+                maxLength='40'
+                onChange={handleChange}
+                value={values.name || ''}
+                required
+              />
+              : <p className='profile__placeholder'>{currentUser.name}</p>
+            }
+
           </div>
           <span
             className='profile__error'
@@ -65,16 +69,20 @@ function Profile({loggedIn, onLogout, onUpdateUser}) {
             >
               Email
             </label>
-            <input
-              className={`profile__value ${isEditActive && 'profile__value_active'}`}
-              type='email'
-              id='user__email'
-              name='email'
-              disabled={!isEditActive && true}
-              onChange={handleChange}
-              value={values.email || ''}
-              required
-            />
+            {isEditActive
+              ? <input
+                className={`profile__value ${isEditActive && 'profile__value_active'}`}
+                type='email'
+                id='user__email'
+                name='email'
+                disabled={!isEditActive && true}
+                onChange={handleChange}
+                value={values.email || ''}
+                required
+              />
+              : <p className='profile__placeholder'>{currentUser.email}</p>
+            }
+
           </div>
           <span
             className='profile__error'

@@ -11,6 +11,8 @@ import NotFound from '../NotFound/NotFound';
 import InfoTooltip from '../InfoTooltip/InfoTooltip';
 import * as api from '../../utils/MainApi';
 import * as moviesApi from '../../utils/MoviesApi';
+import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
+import { errors } from '../../utils/utils';
 
 function App() {
   const [loggedIn, setLoggedIn] = React.useState(false);
@@ -37,20 +39,14 @@ function App() {
       .then(() => {
         setInfoMessage('Вы успешно зарегистрировались!');
         setStatus(true);
-        setIsLoading(false);
         history.push('/signin');
       })
       .catch((err) => {
+        errors(err);
         setStatus(false);
-        if (err.status === 400) {
-          setInfoMessage('Некорректно заполнено одно из полей');
-        } else if (err.status === 409) {
-          setInfoMessage('Такой пользователь уже зарегистрирован');
-        } else {
-          setInfoMessage(`Ошибка: ${err.status}`);
-        }
       })
       .finally(() => {
+        setIsLoading(false);
         setIsInfoTooltipPopupOpen(true);
       })
   }
@@ -64,31 +60,23 @@ function App() {
         setToken(data.token);
         setLoggedIn(true);
         setStatus(true);
-        setIsLoading(false);
-        history.push('/');
+        history.push('/movies');
       })
       .catch((err) => {
+        errors(err);
         setStatus(false);
-        setIsInfoTooltipPopupOpen(true)
-        if (err.status === 400) {
-          setInfoMessage('Не передано одно из полей');
-        } else if (err.status === 401) {
-          setInfoMessage('Пользователь не найден, либо неверно указаны данные.');
-        } else if (err.status === 429) {
-          setInfoMessage(`Ошибка: ${err.status}. Слишком много запросов. Попробуйте позже`);
-        } else {
-          setInfoMessage(`Ошибка: ${err.status}`);
-        }
       })
       .finally(() => {
+        setIsLoading(false);
         setIsInfoTooltipPopupOpen(true);
       })
   }
 
   function handleLogout() {
     localStorage.removeItem('jwt');
-    history.push('/signin');
+    history.push('/');
     setLoggedIn(false);
+    localStorage.clear();
   }
 
   function getToken() {
@@ -98,27 +86,20 @@ function App() {
       api.checkToken(jwt)
         .then(() => {
           setLoggedIn(true);
-          history.push('/');
+          history.push('/movies');
         })
-        .catch((err) => {
-          if (err.status === 401) {
-            console.log('Токен не передан или передан не в том формате')
-          }
-          console.log(new Error(err.status))
-        })
+        .catch(err => errors(err))
     }
   }
 
   function handleUpdateUser(user) {
-    setIsLoading(true);
     api.setUserInfo(user, token)
       .then((res) => {
         setCurrentUser(res);
         setStatus(true);
-        setIsLoading(false);
         setInfoMessage('Вы успешно изменили данные')
       })
-      .catch((err) => console.log(`Что-то пошло не так :( ${err}`))
+      .catch(err => errors(err))
       .finally(() => {
         setIsInfoTooltipPopupOpen(true);
       })
@@ -130,28 +111,10 @@ function App() {
           setInitialSavedMovies(movies);
         })
         .catch((err) => {
+          errors(err);
           setIsMoviesNotFound(true);
           setInitialSavedMovies([]);
-          console.log(`Нет сохраненных фильмов ${err}`)
         })
-  }
-
-  function handleEscClick(evt) {
-    if (evt.key === 'Escape') {
-      closeAllPopups();
-    }
-  }
-
-  function isolatePopup(evt) {
-    evt.stopPropagation();
-  }
-
-  function closeAllPopups() {
-    setIsInfoTooltipPopupOpen(false);
-  }
-
-  function updateWidth() {
-    setWindowWidth(window.innerWidth);
   }
 
   function handleSearch(checked) {
@@ -184,7 +147,7 @@ function App() {
         setInitialMovies(initialMovies.map(item => item.id === newSavedMovie.id ? newSavedMovie : item));
         localStorage.setItem('movies', JSON.stringify(initialMovies));
       })
-      .catch((err) => console.log(`Что-то пошло не так :( ${err}`))
+      .catch(err => errors(err))
   }
 
   function handleDeleteMovie(movie) {
@@ -197,7 +160,7 @@ function App() {
         setInitialMovies(initialMovies.map(item => item.id === deletedFilm.id ? deletedFilm : item));
         localStorage.setItem('movies', JSON.stringify(initialMovies));
       })
-      .catch((err) => console.log(`Что-то пошло не так :( ${err}`))
+      .catch(err => errors(err))
   }
 
   function handleDeleteSavedMovie(movie) {
@@ -211,7 +174,25 @@ function App() {
         setInitialMovies(initialMovies.map(item => item.id === deletedMovie.id ? deletedMovie : item));
         localStorage.setItem('movies', JSON.stringify(initialMovies));
       })
-      .catch((err) => console.log(`Что-то пошло не так :( ${err}`))
+      .catch(err => errors(err))
+  }
+
+  function handleEscClick(evt) {
+    if (evt.key === 'Escape') {
+      closeAllPopups();
+    }
+  }
+
+  function isolatePopup(evt) {
+    evt.stopPropagation();
+  }
+
+  function closeAllPopups() {
+    setIsInfoTooltipPopupOpen(false);
+  }
+
+  function updateWidth() {
+    setWindowWidth(window.innerWidth);
   }
 
   React.useEffect(() => {
@@ -220,7 +201,7 @@ function App() {
         .then((res) => {
           setCurrentUser(res);
         })
-        .catch((err) => console.log(`Что-то пошло не так :( ${err}`));
+        .catch(err => errors(err))
     }
   }, [loggedIn])
 
@@ -257,37 +238,40 @@ function App() {
               windowWidth={windowWidth}
             />
           </Route>
-          <Route exact path='/movies'>
-            <Movies
-              movies={movies}
-              loggedIn={loggedIn}
-              isLoading={isLoading}
-              handleSearch={handleSearch}
-              windowWidth={windowWidth}
-              handleSaveMovie={handleSaveMovie}
-              handleDeleteMovie={handleDeleteMovie}
-              isMoviesNotFound={isMoviesNotFound}
-            />
-          </Route>
-          <Route exact path='/saved-movies'>
-            <SavedMovies
-              savedMovies={savedMovies}
-              loggedIn={loggedIn}
-              isLoading={isLoading}
-              handleSearch={handleSearch}
-              windowWidth={windowWidth}
-              handleSaveMovie={handleSaveMovie}
-              handleDeleteMovie={handleDeleteSavedMovie}
-              isMoviesNotFound={isMoviesNotFound}
-            />
-          </Route>
-          <Route exact path='/profile'>
-            <Profile
-              loggedIn={loggedIn}
-              onLogout={handleLogout}
-              onUpdateUser={handleUpdateUser}
-            />
-          </Route>
+          <ProtectedRoute
+            exact path='/movies'
+            component={Movies}
+            movies={movies}
+            loggedIn={loggedIn}
+            isLoading={isLoading}
+            handleSearch={handleSearch}
+            windowWidth={windowWidth}
+            handleSaveMovie={handleSaveMovie}
+            handleDeleteMovie={handleDeleteMovie}
+            isMoviesNotFound={isMoviesNotFound}
+          >
+          </ProtectedRoute>
+          <ProtectedRoute
+            exact path='/saved-movies'
+            component={SavedMovies}
+            savedMovies={savedMovies}
+            loggedIn={loggedIn}
+            isLoading={isLoading}
+            handleSearch={handleSearch}
+            windowWidth={windowWidth}
+            handleSaveMovie={handleSaveMovie}
+            handleDeleteMovie={handleDeleteSavedMovie}
+            isMoviesNotFound={isMoviesNotFound}
+          >
+          </ProtectedRoute>
+          <ProtectedRoute
+            exact path='/profile'
+            component={Profile}
+            loggedIn={loggedIn}
+            onLogout={handleLogout}
+            onUpdateUser={handleUpdateUser}
+          >
+          </ProtectedRoute>
           <Route exact path='/signup'>
             <Register
               onRegister={handleRegister}

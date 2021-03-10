@@ -111,6 +111,15 @@
   text-align: right;
 }
 
+.profile__placeholder {
+  font-weight: normal;
+  font-size: 11px;
+  line-height: 13px;
+  color: #fff;
+  text-align: right;
+  margin: 0;
+}
+
 @media all and (max-width: 800px) {
   .profile {
     padding: 236px 0 269px;

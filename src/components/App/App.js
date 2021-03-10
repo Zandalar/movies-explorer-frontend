@@ -188,6 +188,19 @@ function App() {
   }
 
   function handleDeleteMovie(movie) {
+    const deletedMovie = initialSavedMovies.find((item) => item.movieId === movie.id);
+    api.deleteMovie(deletedMovie._id)
+      .then(() => {
+        getSavedMovies();
+        const deletedFilm = initialMovies.find(item => item === movie);
+        delete deletedFilm.saved;
+        setInitialMovies(initialMovies.map(item => item.id === deletedFilm.id ? deletedFilm : item));
+        localStorage.setItem('movies', JSON.stringify(initialMovies));
+      })
+      .catch((err) => console.log(`Что-то пошло не так :( ${err}`))
+  }
+
+  function handleDeleteSavedMovie(movie) {
     api.deleteMovie(movie._id)
       .then(() => {
         getSavedMovies();
@@ -264,7 +277,7 @@ function App() {
               handleSearch={handleSearch}
               windowWidth={windowWidth}
               handleSaveMovie={handleSaveMovie}
-              handleDeleteMovie={handleDeleteMovie}
+              handleDeleteMovie={handleDeleteSavedMovie}
               isMoviesNotFound={isMoviesNotFound}
             />
           </Route>

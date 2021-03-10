@@ -6,8 +6,12 @@ function MoviesCard({data, handleSaveMovie, handleDeleteMovie}) {
   const [isShown, setIsShown] = React.useState(false);
   const location = useLocation().pathname;
 
-  function handleSaveButton() {
-    setIsShown(!isShown);
+  function handleSaveButtonDisactive() {
+    setIsShown(false);
+  }
+
+  function handleSaveButtonActive() {
+    setIsShown(true);
   }
 
   function handleSave() {
@@ -25,7 +29,7 @@ function MoviesCard({data, handleSaveMovie, handleDeleteMovie}) {
   }
 
   return (
-    <li className='card' onMouseEnter={handleSaveButton} onMouseLeave={handleSaveButton} id={location === '/movies' ? data.id : data._id}>
+    <li className='card' onMouseEnter={handleSaveButtonActive} onMouseLeave={handleSaveButtonDisactive} id={location === '/movies' ? data.id : data._id}>
       {(location === '/movies' && data.saved === true)
       &&
       <div className='card__saved' onClick={handleDelete} />}

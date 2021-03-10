@@ -114,6 +114,7 @@
   background-repeat: no-repeat;
   background-position: center;
   border-radius: 30px;
+  cursor: pointer;
 }
 
 @media all and (max-width: 800px) {

@@ -7,12 +7,11 @@ function Register({onRegister, isLoading}) {
     <main className='register'>
       <WelcomeScreen title='Добро пожаловать!' />
       <Form
-        buttonText='Зарегистрироваться'
+        buttonText={isLoading ? 'Регистрация...' : 'Зарегистрироваться'}
         descriptionMessage='Уже зарегистрированы?'
         formId='register'
         linkMessage='Войти'
         onRegister={onRegister}
-        isLoading={isLoading}
       />
     </main>
   )

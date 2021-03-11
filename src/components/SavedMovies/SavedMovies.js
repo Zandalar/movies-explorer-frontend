@@ -5,7 +5,7 @@ import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
 import Preloader from '../Preloader/Preloader';
 
-function SavedMovies({savedMovies, loggedIn, isLoading, handleSearch, windowWidth, handleSaveMovie, handleDeleteMovie}) {
+function SavedMovies({savedMovies, loggedIn, isLoading, handleSearch, windowWidth, handleSaveMovie, handleDeleteMovie, moviesMessage}) {
   return (
     <>
       <Header
@@ -20,13 +20,13 @@ function SavedMovies({savedMovies, loggedIn, isLoading, handleSearch, windowWidt
         {isLoading
           ? <Preloader />
           : <MoviesCardList
-            movies={savedMovies}
-            isLoading={isLoading}
-            windowWidth={windowWidth}
-            handleSaveMovie={handleSaveMovie}
-            handleDeleteMovie={handleDeleteMovie}
-            notFoundMessage={savedMovies.length === 0 && 'У Вас пока нет сохраненных фильмов'}
-          />
+              movies={savedMovies}
+              isLoading={isLoading}
+              windowWidth={windowWidth}
+              handleSaveMovie={handleSaveMovie}
+              handleDeleteMovie={handleDeleteMovie}
+              moviesMessage={moviesMessage}
+            />
         }
       </main>
       <Footer />

@@ -20,14 +20,21 @@ function SearchForm({handleSearch, windowWidth}) {
   }
 
   React.useEffect(() => {
-    handleSearch(checked);
-  }, [checked]);
+    handleSearch(checked)
+    setKeyword(localStorage.getItem('keyword'))
+  }, [])
+
+  React.useEffect(() => {
+    handleSearch(checked)
+  }, [checked])
 
   return (
     <section className='search'>
       <div className='search__container'>
         <form className='search__form' name='search' noValidate onSubmit={handleSubmit}>
-          {windowWidth > 600 && <img className='search__icon' src={searchIcon} alt='иконка поиска' />}
+          {windowWidth > 600 &&
+            <img className='search__icon' src={searchIcon} alt='иконка поиска' />
+          }
           <input
             className='search__input'
             id='search'
@@ -40,18 +47,32 @@ function SearchForm({handleSearch, windowWidth}) {
             onChange={handleKeyword}
             value={keyword || ''}
           />
-          <button className='search__button' type='submit' />
+          <button
+            className='search__button'
+            type='submit'
+            onSubmit={handleSubmit}
+          />
         </form>
         {windowWidth > 600 &&
           <label className='search__checkbox'>
-            <input className='search__checkbox-input' id='switcher' type='checkbox' onChange={handleCheck} />
+            <input
+              className='search__checkbox-input'
+              id='switcher'
+              type='checkbox'
+              onChange={handleCheck}
+            />
             <div className='search__checkbox-text'>Короткометражки</div>
           </label>
         }
       </div>
       {windowWidth < 600 &&
       <label className='search__checkbox'>
-        <input className='search__checkbox-input' id='switcher' type='checkbox' onChange={handleCheck} />
+        <input
+          className='search__checkbox-input'
+          id='switcher'
+          type='checkbox'
+          onChange={handleCheck}
+        />
         <div className='search__checkbox-text'>Короткометражки</div>
       </label>
       }

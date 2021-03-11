@@ -3,7 +3,7 @@ import { useLocation } from 'react-router-dom';
 import Submit from '../Submit/Submit';
 import useValidator from '../../hooks/useValidator';
 
-function Form({buttonText, descriptionMessage, formId, linkMessage, onRegister, onLogin, isLoading}) {
+function Form({buttonText, descriptionMessage, formId, linkMessage, onRegister, onLogin}) {
   const { values, errors, isValid, handleChange, resetForm } = useValidator();
   const location = useLocation().pathname;
   const focus = React.useRef();
@@ -69,7 +69,7 @@ function Form({buttonText, descriptionMessage, formId, linkMessage, onRegister, 
           className='form__error'
           id='profile__description-error'>
           {errors.email || ''}
-      </span>
+        </span>
         <label className='form__label' htmlFor='profile__password'>Пароль</label>
         <input
           className='form__input'
@@ -86,7 +86,7 @@ function Form({buttonText, descriptionMessage, formId, linkMessage, onRegister, 
           className='form__error'
           id='profile__description-error'>
           {errors.password || ''}
-      </span>
+        </span>
       </form>
       <Submit
         buttonText={buttonText}
@@ -94,7 +94,6 @@ function Form({buttonText, descriptionMessage, formId, linkMessage, onRegister, 
         formId={formId}
         linkMessage={linkMessage}
         isValid={isValid}
-        isLoading={isLoading}
       />
     </section>
   )

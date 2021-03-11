@@ -29,7 +29,12 @@ function MoviesCard({data, handleSaveMovie, handleDeleteMovie}) {
   }
 
   return (
-    <li className='card' onMouseEnter={handleSaveButtonActive} onMouseLeave={handleSaveButtonDisactive} id={location === '/movies' ? data.id : data._id}>
+    <li
+      className='card'
+      id={location === '/movies' ? data.id : data._id}
+      onMouseEnter={handleSaveButtonActive}
+      onMouseLeave={handleSaveButtonDisactive}
+    >
       {(location === '/movies' && data.saved === true)
       &&
       <div className='card__saved' onClick={handleDelete} />}
@@ -51,17 +56,17 @@ function MoviesCard({data, handleSaveMovie, handleDeleteMovie}) {
       />}
       {location === '/saved-movies'
         ? <img
-          className='card__image'
-          src={data.image !== null ? data.image : movie}
-          alt={data.nameRU}
-          onClick={handleImageClick}
-        />
+            className='card__image'
+            src={data.image !== null ? data.image : movie}
+            alt={data.nameRU}
+            onClick={handleImageClick}
+          />
         : <img
-          className='card__image'
-          src={data.image !== null ? `https://api.nomoreparties.co${data.image.url}` : movie}
-          alt={data.nameRU}
-          onClick={handleImageClick}
-        />
+            className='card__image'
+            src={data.image !== null ? `https://api.nomoreparties.co${data.image.url}` : movie}
+            alt={data.nameRU}
+            onClick={handleImageClick}
+          />
       }
       <div className='card__container'>
         <p className='card__name'>{data.nameRU}</p>

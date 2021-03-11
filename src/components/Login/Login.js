@@ -7,12 +7,11 @@ function Login({onLogin, isLoading}) {
     <main className='login'>
       <WelcomeScreen title='Рады видеть!' />
       <Form
-        buttonText='Войти'
+        buttonText={isLoading ? 'Вход...' : 'Войти'}
         descriptionMessage='Ещё не зарегистрированы?'
         formId='login'
         linkMessage='Регистрация'
         onLogin={onLogin}
-        isLoading={isLoading}
       />
     </main>
   )

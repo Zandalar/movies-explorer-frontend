@@ -3,11 +3,12 @@ import { useLocation } from 'react-router-dom';
 import MoviesCard from '../MoviesCard/MoviesCard';
 import MoreButton from '../MoreButton/MoreButton';
 
-function MoviesCardList({movies, isLoading, windowWidth, handleSaveMovie, handleDeleteMovie, notFoundMessage}) {
+function MoviesCardList({movies, windowWidth, handleSaveMovie, handleDeleteMovie, moviesMessage}) {
   const [renderedMoviesList, setRenderedMoviesList] = React.useState([]);
   const [isButtonActive, setIsButtonActive] = React.useState(false);
   const [renderedCardsCount, setRenderedCardsCount] = React.useState(12);
   const [addedCardsCount, setAddedCardsCount] = React.useState(0);
+
   const location = useLocation().pathname;
 
   function cardsCount() {
@@ -49,7 +50,7 @@ function MoviesCardList({movies, isLoading, windowWidth, handleSaveMovie, handle
     <>
       <section className='cards'>
         {movies.length === 0
-          ? <p className='cards__not-found'>{notFoundMessage}</p>
+          ? <p className='cards__not-found'>{moviesMessage}</p>
           : <ul className='cards__list'>
               {renderedMoviesList.map(data => {
                 return (

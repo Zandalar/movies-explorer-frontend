@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
-function Submit({buttonText, formId, descriptionMessage, linkMessage, isValid, isLoading}) {
+function Submit({buttonText, formId, descriptionMessage, linkMessage, isValid}) {
   const location = useLocation().pathname;
 
   return (

@@ -5,7 +5,8 @@ import useValidator from '../../hooks/useValidator';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 
 function Profile({loggedIn, onLogout, onUpdateUser}) {
-  const [isEditActive, setIsEditActive] = React.useState(false)
+  const [isEditActive, setIsEditActive] = React.useState(false);
+  const [isSubmitButtonActive, setIsSubmitButtonActive] = React.useState(false);
   const { values, errors, isValid, handleChange } = useValidator();
   const currentUser = React.useContext(CurrentUserContext);
 
@@ -20,6 +21,24 @@ function Profile({loggedIn, onLogout, onUpdateUser}) {
 
   function editProfile() {
     setIsEditActive(true);
+  }
+
+  function checkNameInput(evt) {
+    handleChange(evt);
+    if (evt.target.value !== currentUser.name) {
+      setIsSubmitButtonActive(true);
+    } else {
+      setIsSubmitButtonActive(false);
+    }
+  }
+
+  function checkEmailInput(evt) {
+    handleChange(evt);
+    if (evt.target.value !== currentUser.email) {
+      setIsSubmitButtonActive(true);
+    } else {
+      setIsSubmitButtonActive(false);
+    }
   }
 
   React.useEffect(() => {
@@ -49,7 +68,7 @@ function Profile({loggedIn, onLogout, onUpdateUser}) {
                   disabled={!isEditActive && true}
                   minLength='2'
                   maxLength='40'
-                  onChange={handleChange}
+                  onChange={checkNameInput}
                   value={values.name || ''}
                   required
                 />
@@ -76,7 +95,7 @@ function Profile({loggedIn, onLogout, onUpdateUser}) {
                   id='user__email'
                   name='email'
                   disabled={!isEditActive && true}
-                  onChange={handleChange}
+                  onChange={checkEmailInput}
                   value={values.email || ''}
                   required
                 />
@@ -95,6 +114,7 @@ function Profile({loggedIn, onLogout, onUpdateUser}) {
               buttonText='Сохранить'
               formId='profile'
               isValid={isValid}
+              isActive={isSubmitButtonActive}
             />
           : <ul className='profile__menu'>
             <li className='profile__menu-item'>

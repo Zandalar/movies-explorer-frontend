@@ -36,11 +36,16 @@ function MoviesCardList({movies, windowWidth, handleSaveMovie, handleDeleteMovie
   }, [windowWidth]);
 
   React.useEffect(() => {
-    setRenderedMoviesList(movies.slice(0, renderedCardsCount));
-    if (movies.length <= renderedCardsCount) {
-      setIsButtonActive(false);
+    if (location === '/movies') {
+      setRenderedMoviesList(movies.slice(0, renderedCardsCount));
+      if (movies.length <= renderedCardsCount) {
+        setIsButtonActive(false);
+      } else {
+        setIsButtonActive(true);
+      }
     } else {
-      setIsButtonActive(true);
+      setRenderedMoviesList(movies);
+      setIsButtonActive(false);
     }
   }, [movies]);
 

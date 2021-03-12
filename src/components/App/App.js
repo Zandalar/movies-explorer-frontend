@@ -40,6 +40,7 @@ function App() {
       })
       .catch((err) => {
         setInfoMessage(errors(err));
+        setStatus(false);
         setIsInfoTooltipPopupOpen(true);
       })
       .finally(() => {
@@ -58,6 +59,7 @@ function App() {
       })
       .catch((err) => {
         setInfoMessage(errors(err));
+        setStatus(false);
         setIsInfoTooltipPopupOpen(true);
       })
       .finally(() => {
@@ -89,6 +91,8 @@ function App() {
     api.setUserInfo(user, token)
       .then((res) => {
         setCurrentUser(res);
+        localStorage.setItem('name', res.name);
+        localStorage.setItem('email', res.email);
         setStatus(true);
         setInfoMessage('Вы успешно изменили данные')
       })
@@ -190,14 +194,16 @@ function App() {
   }
 
   React.useEffect(() => {
-    setIsLoading(true);
     getToken();
     if (loggedIn) {
       const promises = [api.getUserInfo(), moviesApi.getMovies()]
+      setIsLoading(true);
       Promise.all(promises)
         .then((res) => {
           const [userInfo, moviesList] = res;
           setCurrentUser(userInfo);
+          localStorage.setItem('name', userInfo.name);
+          localStorage.setItem('email', userInfo.email);
           if (localStorage.getItem('movies') === null) {
             localStorage.setItem('movies', JSON.stringify(moviesList));
             setInitialMovies(moviesList);

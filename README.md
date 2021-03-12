@@ -2,7 +2,7 @@
 
 * домен бэкенда - https://api.masich-films.students.nomoredomains.rocks/
 * ip бэкенда - [130.193.58.132](https://api.masich-films.students.nomoredomains.rocks/)
-* адрес сайта https://api.masich-films.students.nomoredomains.rocks/
+* адрес сайта https://masich-films.students.nomoredomains.rocks/
 
 ## На данный момент реализовано:
 ### Backend:

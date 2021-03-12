@@ -37,6 +37,7 @@ function App() {
     api.register(name, email, password)
       .then(() => {
         handleLogin(email, password)
+        setInfoMessage('Вы успешно зарегистрировались')
       })
       .catch((err) => {
         setInfoMessage(errors(err));
@@ -55,15 +56,17 @@ function App() {
         localStorage.setItem('jwt', data.token);
         setToken(data.token);
         setLoggedIn(true);
+        setStatus(true);
+        setInfoMessage('Вы успешно вошли в аккаунт')
         history.push('/movies');
       })
       .catch((err) => {
         setInfoMessage(errors(err));
         setStatus(false);
-        setIsInfoTooltipPopupOpen(true);
       })
       .finally(() => {
         setIsLoading(false);
+        setIsInfoTooltipPopupOpen(true);
       })
   }
 
@@ -107,13 +110,13 @@ function App() {
         .then((movies) => {
           setInitialSavedMovies(movies);
         })
-        .catch((err) => {
-          setInfoMessage(errors(err));
+        .catch(() => {
           setInitialSavedMovies([]);
         })
   }
 
   function handleSearch(checked) {
+    getSavedMovies();
     let sortedMovies;
     const word = localStorage.getItem('keyword') || '';
     const filteredMovies = location === '/movies' ? initialMovies : initialSavedMovies;
@@ -146,7 +149,10 @@ function App() {
         setInitialMovies(initialMovies.map(item => item.id === newSavedMovie.id ? newSavedMovie : item));
         localStorage.setItem('movies', JSON.stringify(initialMovies));
       })
-      .catch(err => setInfoMessage(errors(err)))
+      .catch((err) => {
+        setInfoMessage(errors(err));
+        setMoviesMessage('У вас пока нет сохраненных фильмов')
+      })
   }
 
   function handleDeleteMovie(movie) {
@@ -165,6 +171,7 @@ function App() {
   function handleDeleteSavedMovie(movie) {
     api.deleteMovie(movie._id)
       .then(() => {
+        getSavedMovies();
         const newMovies = savedMovies.filter(item => item !== movie);
         const deletedMovie = initialMovies.find(item => item.id === movie.movieId);
         delete deletedMovie.saved;
@@ -211,16 +218,13 @@ function App() {
             setInitialMovies(JSON.parse(localStorage.getItem('movies')));
           }
         })
-        .catch(err => setInfoMessage(errors(err)))
+        .catch((err) => {
+          setInfoMessage(errors(err));
+          setIsInfoTooltipPopupOpen(true);
+        })
         .finally(() => setIsLoading(false))
     }
   }, [loggedIn])
-
-  React.useEffect(() => {
-    if (loggedIn) {
-      getSavedMovies();
-    }
-  }, [savedMovies])
 
   React.useEffect(() => {
     window.addEventListener('resize', updateWidth);

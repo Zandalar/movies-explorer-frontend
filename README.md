@@ -1,70 +1,27 @@
-# Getting Started with Create React App
+# Дипломный проект ["movies-explorer"](https://masich-films.students.nomoredomains.rocks/)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+* домен бэкенда - https://api.masich-films.students.nomoredomains.rocks/
+* ip бэкенда - [130.193.58.132](https://api.masich-films.students.nomoredomains.rocks/)
+* адрес сайта https://api.masich-films.students.nomoredomains.rocks/
 
-## Available Scripts
+## На данный момент реализовано:
+### Backend:
+* Развернут сервер, с использованием express.js, nginx, mongoDB
+* Сервер принимает и обрабатывает запросы фронтенда
+* В ответ сервер отправляет данные для регистрации, аутентификации,
+  смены информации пользователя, поиска, сохранения/удаления фильмов и т.д.
+* Добавлена обработка ошибок 400, 401, 403, 404, 409, 429, 500
 
-In the project directory, you can run:
+### Frontend:
 
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+* Создано приложение с использованием CRA
+* Перенесена разметка HTML и стили CSS
+* Использованы функциональные компоненты и хуки
+* Добавлен прелоадер
+* Регистрация пользователя
+* Аутентификация пользователя
+* Валидация форм и полей ввода
+* Оптимизирован и структурирован код
+* Отредактирована верстка(полный адаптив)
+* Добавлено меню на маленьких разрешениях экрана
+* Модальное окно с результатом действий пользователя

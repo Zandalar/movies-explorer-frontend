@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Switch, useHistory, useLocation } from 'react-router-dom';
+import { Redirect, Route, Switch, useHistory, useLocation } from 'react-router-dom';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import { errors } from '../../utils/utils';
 import * as api from '../../utils/MainApi';
@@ -84,7 +84,6 @@ function App() {
       api.checkToken(jwt)
         .then(() => {
           setLoggedIn(true);
-          history.push('/movies');
         })
         .catch(err => setInfoMessage(errors(err)))
     }
@@ -106,13 +105,20 @@ function App() {
   }
 
   function getSavedMovies() {
-      api.getSavedMovies()
-        .then((movies) => {
-          setInitialSavedMovies(movies);
+    api.getSavedMovies()
+      .then((movies) => {
+        setInitialSavedMovies(movies);
+        movies.forEach((movie) => {
+          const newSavedMovie = initialMovies.find(item => item.id === movie.movieId);
+          if (newSavedMovie !== undefined) {
+            newSavedMovie.saved = true;
+            setInitialMovies(initialMovies.map(item => item.id === movie.movieId ? newSavedMovie : item));
+          }
         })
-        .catch(() => {
-          setInitialSavedMovies([]);
-        })
+      })
+      .catch(() => {
+        setInitialSavedMovies([]);
+      })
   }
 
   function handleSearch(checked) {
@@ -290,6 +296,24 @@ function App() {
               onLogin={handleLogin}
               isLoading={isLoading}
             />
+          </Route>
+          <Route exact path='/movies'>
+            { loggedIn
+              ? <Redirect to='/movies' />
+              : <Redirect to='/' />
+            }
+          </Route>
+          <Route exact path='/saved-movies'>
+            { loggedIn
+              ? <Redirect to='/saved-movies' />
+              : <Redirect to='/' />
+            }
+          </Route>
+          <Route exact path='/profile'>
+            { loggedIn
+              ? <Redirect to='/profile' />
+              : <Redirect to='/' />
+            }
           </Route>
           <Route path='/*'>
             <NotFound />

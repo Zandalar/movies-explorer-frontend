@@ -32,8 +32,8 @@ function MoviesCard({data, handleSaveMovie, handleDeleteMovie}) {
     <li
       className='card'
       id={location === '/movies' ? data.id : data._id}
-      onMouseEnter={handleSaveButtonActive}
-      onMouseLeave={handleSaveButtonDisactive}
+      onMouseOver={handleSaveButtonActive}
+      onMouseOut={handleSaveButtonDisactive}
     >
       {(location === '/movies' && data.saved === true)
       &&

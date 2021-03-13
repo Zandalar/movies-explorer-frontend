@@ -7,7 +7,7 @@
 .cards__list {
   width: 100%;
   display: grid;
-  grid-template-columns: repeat(auto-fill, 360px);
+  grid-template-columns: repeat(auto-fit, 360px);
   grid-column-gap: 30px;
   grid-row-gap: 60px;
   list-style: none;
@@ -15,6 +15,12 @@
   padding: 0;
   object-position: center;
   justify-content: center;
+}
+
+.cards__not-found {
+  font-size: 40px;
+  font-weight: bold;
+  text-align: center;
 }
 
 @media all and (max-width: 800px) {

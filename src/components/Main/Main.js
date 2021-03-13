@@ -8,10 +8,13 @@ import Techs from '../Techs/Techs'
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
 
-function Main({loggedIn}) {
+function Main({loggedIn, windowWidth}) {
   return (
     <>
-      <Header loggedIn={loggedIn} />
+      <Header
+        loggedIn={loggedIn}
+        windowWidth={windowWidth}
+      />
       <main className='main'>
         <Promo />
         <AboutProject />

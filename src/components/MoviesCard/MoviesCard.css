@@ -10,6 +10,10 @@
   border-radius: 6px;
 }
 
+.card__image:hover {
+  cursor: pointer;
+}
+
 .card__container {
   width: 100%;
   display: flex;
@@ -110,6 +114,7 @@
   background-repeat: no-repeat;
   background-position: center;
   border-radius: 30px;
+  cursor: pointer;
 }
 
 @media all and (max-width: 800px) {

@@ -2,15 +2,16 @@ import React from 'react';
 import WelcomeScreen from '../WelcomeScreen/WelcomeScreen';
 import Form from '../Form/Form';
 
-function Login({}) {
+function Login({onLogin, isLoading}) {
   return (
     <main className='login'>
       <WelcomeScreen title='Рады видеть!' />
       <Form
-        buttonText='Войти'
+        buttonText={isLoading ? 'Вход...' : 'Войти'}
         descriptionMessage='Ещё не зарегистрированы?'
         formId='login'
         linkMessage='Регистрация'
+        onLogin={onLogin}
       />
     </main>
   )

@@ -1,8 +1,7 @@
-import React from 'react';
+import React, { memo } from 'react';
 import SectionTitle from '../SectionTitle/SectionTitle';
 
-function Techs({}) {
-  return (
+const Techs = memo(() => (
     <section className='techs' id='techs'>
       <div className='techs__container'>
         <SectionTitle title='Технологии' />
@@ -36,6 +35,6 @@ function Techs({}) {
       </div>
     </section>
   )
-}
+)
 
 export default Techs;

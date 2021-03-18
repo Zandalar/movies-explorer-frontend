@@ -1,8 +1,7 @@
-import React from 'react';
+import React, { memo } from 'react';
 import SectionTitle from '../SectionTitle/SectionTitle';
 
-function AboutProject({}) {
-  return (
+const AboutProject = memo(() => (
     <section className='project' id='project'>
       <SectionTitle title='О проекте' />
       <div className='project__container'>
@@ -31,6 +30,6 @@ function AboutProject({}) {
       </ul>
     </section>
   )
-}
+)
 
 export default AboutProject;

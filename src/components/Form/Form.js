@@ -1,14 +1,14 @@
-import React from 'react';
+import React, { memo, useCallback, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import Submit from '../Submit/Submit';
 import useValidator from '../../hooks/useValidator';
 
-function Form({buttonText, descriptionMessage, formId, linkMessage, onRegister, onLogin}) {
+const Form = memo(({buttonText, descriptionMessage, formId, linkMessage, onRegister, onLogin}) => {
   const { values, errors, isValid, handleChange, resetForm } = useValidator();
   const location = useLocation().pathname;
   const focus = React.useRef();
 
-  function handleSubmit(evt) {
+  const handleSubmit = useCallback((evt) => {
     evt.preventDefault();
     location === '/signup'
     ? onRegister(
@@ -20,9 +20,9 @@ function Form({buttonText, descriptionMessage, formId, linkMessage, onRegister, 
         values.email,
         values.password
       )
-  }
+  }, [values, location])
 
-  React.useEffect(() => {
+  useEffect(() => {
     resetForm();
     setTimeout(() => {focus.current.focus()}, 0)
   }, []);
@@ -97,6 +97,6 @@ function Form({buttonText, descriptionMessage, formId, linkMessage, onRegister, 
       />
     </section>
   )
-}
+})
 
 export default Form;

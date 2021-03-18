@@ -1,14 +1,14 @@
-import React from 'react';
+import React, { memo, useCallback } from 'react';
 import { useHistory } from 'react-router-dom';
 import logo from '../../images/logo.svg';
 import Navigation from '../Navigation/Navigation';
 
-function Header({loggedIn, windowWidth}) {
+const Header = memo(({loggedIn, windowWidth}) => {
   const history = useHistory();
 
-  function handleLogoClick() {
+  const handleLogoClick = useCallback(() => {
     history.push('/');
-  }
+  }, [])
 
   return (
     <header className='header'>
@@ -21,6 +21,6 @@ function Header({loggedIn, windowWidth}) {
       </div>
     </header>
   )
-}
+})
 
 export default Header;

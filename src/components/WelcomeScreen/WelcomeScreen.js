@@ -1,13 +1,11 @@
-import React from 'react';
+import React, { memo, useCallback } from 'react';
 import { useHistory } from 'react-router-dom';
 import logo from '../../images/logo.svg';
 
-function WelcomeScreen({title}) {
+const WelcomeScreen = memo(({title}) => {
   const history = useHistory();
 
-  function handleLogoClick() {
-    history.push('/');
-  }
+  const handleLogoClick = useCallback(() => history.push('/'), [])
 
   return (
     <section className='welcome-screen'>
@@ -20,6 +18,6 @@ function WelcomeScreen({title}) {
       <h1 className='welcome-screen__title'>{title}</h1>
     </section>
   )
-}
+})
 
 export default WelcomeScreen;

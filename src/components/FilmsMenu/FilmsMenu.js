@@ -1,8 +1,7 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { Link } from 'react-router-dom';
 
-function FilmsMenu({}) {
-  return (
+const FilmsMenu = memo(() => (
     <ul className='films__menu'>
       <li className='films__menu-item'>
         <Link to='/movies' className='films__link'>Фильмы</Link>
@@ -12,6 +11,6 @@ function FilmsMenu({}) {
       </li>
     </ul>
   )
-}
+)
 
 export default FilmsMenu;

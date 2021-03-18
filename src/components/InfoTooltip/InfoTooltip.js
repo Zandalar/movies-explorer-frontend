@@ -1,9 +1,8 @@
-import React from 'react';
+import React, { memo } from 'react';
 import okLogo from '../../images/icon__accept.svg';
 import errorLogo from '../../images/icon__error.svg';
 
-function InfoTooltip({ isOpen, onClose, isolatePopup, status, infoMessage }) {
-  return (
+const InfoTooltip = memo(({ isOpen, onClose, isolatePopup, status, infoMessage }) => (
     <div className={`popup ${isOpen && 'popup_opened'}`} id='popup__info' onClick={onClose}>
       <div className='popup__container' onClick={isolatePopup}>
         <button className='popup__button-close' id='info__button-close' type='button' onClick={onClose} />
@@ -17,6 +16,6 @@ function InfoTooltip({ isOpen, onClose, isolatePopup, status, infoMessage }) {
       </div>
     </div>
   )
-}
+)
 
 export default InfoTooltip;

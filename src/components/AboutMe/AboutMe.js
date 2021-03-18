@@ -1,9 +1,8 @@
-import React from 'react';
+import React, { memo } from 'react';
 import SectionTitle from '../SectionTitle/SectionTitle';
 import photo from '../../images/author.jpg';
 
-function AboutMe({}) {
-  return (
+const AboutMe = memo(() => (
     <section className='student' id='student'>
       <SectionTitle title='Студент' />
       <div className='student__container'>
@@ -31,6 +30,6 @@ function AboutMe({}) {
       </div>
     </section>
   )
-}
+)
 
 export default AboutMe;

@@ -1,7 +1,6 @@
-import React from 'react';
+import React, { memo } from 'react';
 
-function Footer({}) {
-  return (
+const Footer = memo(() => (
     <footer className='footer'>
       <div className='footer__container'>
         <p className='footer__text'>Учебный проект Яндекс.Практикум х BeatFilm.</p>
@@ -22,6 +21,6 @@ function Footer({}) {
       </div>
     </footer>
   )
-}
+)
 
 export default Footer;

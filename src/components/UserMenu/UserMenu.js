@@ -1,8 +1,7 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { Link } from 'react-router-dom';
 
-function UserMenu({loggedIn}) {
-  return (
+const UserMenu = memo(({loggedIn}) => (
     <ul className='user__menu'>
       <li className='user__menu-item'>
         <Link to={loggedIn ? '/profile' : 'signup'} className='user__button-signup'>{loggedIn ? 'Аккаунт' : 'Регистрация'}</Link>
@@ -17,6 +16,6 @@ function UserMenu({loggedIn}) {
       </li>
     </ul>
   )
-}
+)
 
 export default UserMenu;

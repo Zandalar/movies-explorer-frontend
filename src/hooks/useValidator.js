@@ -1,21 +1,21 @@
-import React from 'react';
+import { useCallback, useState } from 'react';
 
 function useValidator() {
-  const [values, setValues] = React.useState({});
-  const [errors, setErrors] = React.useState({});
-  const [isValid, setIsValid] = React.useState(false);
+  const [values, setValues] = useState({});
+  const [errors, setErrors] = useState({});
+  const [isValid, setIsValid] = useState(false);
 
-  function handleChange(evt) {
+  const handleChange = useCallback((evt) => {
     setValues({ ...values, [evt.target.name]: evt.target.value });
     setErrors({ ...errors, [evt.target.name]: evt.target.validationMessage });
     setIsValid(evt.target.closest('form').checkValidity());
-  }
+  }, [values,errors])
 
-  function resetForm() {
+  const resetForm = useCallback(() => {
     setValues({});
     setErrors({});
     setIsValid(false);
-  }
+  }, [])
   return {
     values, errors, isValid, handleChange, resetForm,
   };

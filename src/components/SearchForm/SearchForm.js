@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import searchIcon from '../../images/icon__search.svg';
 
 function SearchForm({handleSearch, windowWidth}) {
-  const [checked, setChecked] = React.useState(false);
-  const [keyword, setKeyword] = React.useState('');
+  const [checked, setChecked] = useState(false);
+  const [keyword, setKeyword] = useState('');
 
   function handleKeyword(evt) {
     setKeyword(evt.target.value);
@@ -19,12 +19,12 @@ function SearchForm({handleSearch, windowWidth}) {
     handleSearch(checked);
   }
 
-  React.useEffect(() => {
+  useEffect(() => {
     handleSearch(checked)
     setKeyword(localStorage.getItem('keyword'))
   }, [])
 
-  React.useEffect(() => {
+  useEffect(() => {
     handleSearch(checked)
   }, [checked])
 

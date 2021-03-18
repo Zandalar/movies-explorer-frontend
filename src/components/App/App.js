@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Redirect, Route, Switch, useHistory, useLocation } from 'react-router-dom';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
-import { errors } from '../../utils/utils';
-import * as api from '../../utils/MainApi';
-import * as moviesApi from '../../utils/MoviesApi';
+import { errors } from '../../utils';
+import * as api from '../../api/mainApi';
+import * as moviesApi from '../../api/moviesApi';
 import Main from '../Main/Main';
 import Movies from '../Movies/Movies';
 import SavedMovies from '../SavedMovies/SavedMovies';
@@ -15,19 +15,19 @@ import InfoTooltip from '../InfoTooltip/InfoTooltip';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 
 function App() {
-  const [loggedIn, setLoggedIn] = React.useState(false);
-  const [isLoading, setIsLoading] = React.useState(false);
-  const [status, setStatus] = React.useState(false);
-  const [isInfoTooltipPopupOpen, setIsInfoTooltipPopupOpen] = React.useState(false);
-  const [currentUser, setCurrentUser] = React.useState({});
-  const [infoMessage, setInfoMessage] = React.useState('');
-  const [token, setToken] = React.useState('');
-  const [moviesMessage, setMoviesMessage] = React.useState('');
-  const [movies, setMovies] = React.useState([]);
-  const [savedMovies, setSavedMovies] = React.useState([]);
-  const [initialMovies, setInitialMovies] = React.useState([]);
-  const [initialSavedMovies, setInitialSavedMovies] = React.useState([]);
-  const [windowWidth, setWindowWidth] = React.useState(window.innerWidth);
+  const [loggedIn, setLoggedIn] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [status, setStatus] = useState(false);
+  const [isInfoTooltipPopupOpen, setIsInfoTooltipPopupOpen] = useState(false);
+  const [currentUser, setCurrentUser] = useState({});
+  const [infoMessage, setInfoMessage] = useState('');
+  const [token, setToken] = useState('');
+  const [moviesMessage, setMoviesMessage] = useState('');
+  const [movies, setMovies] = useState([]);
+  const [savedMovies, setSavedMovies] = useState([]);
+  const [initialMovies, setInitialMovies] = useState([]);
+  const [initialSavedMovies, setInitialSavedMovies] = useState([]);
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
   const location = useLocation().pathname;
   const history = useHistory();
@@ -206,7 +206,7 @@ function App() {
     setWindowWidth(window.innerWidth);
   }
 
-  React.useEffect(() => {
+  useEffect(() => {
     getToken();
     if (loggedIn) {
       const promises = [api.getUserInfo(), moviesApi.getMovies()]
@@ -232,7 +232,7 @@ function App() {
     }
   }, [loggedIn])
 
-  React.useEffect(() => {
+  useEffect(() => {
     window.addEventListener('resize', updateWidth);
     window.addEventListener('keydown', handleEscClick);
     return () => {

@@ -1,7 +1,7 @@
 import React from 'react';
 import NavTab from '../NavTab/NavTab';
 
-function Promo({}) {
+function Promo() {
   return (
     <section className='promo'>
       <div className='promo__container'>
